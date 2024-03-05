@@ -1,10 +1,12 @@
 import { connection as db } from "../config/index.js";
 import { hash, compare } from "bcrypt";
+import { createToken} from "../middleware/AuthenticateUser.js"
+
 
 class Users {
   fetchUsers(req, res) {
     const qry = `
-        SELECT UserID,firstName,lastName,userAge,gender,emailAdd,userPass,userRole
+        SELECT UserID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
         FROM Users
         `;
 
@@ -19,7 +21,7 @@ class Users {
   fetchUser(req, res) {
     const qry = `
         SELECT UserID,firstName,lastName,
-        userAge,gender,emailAdd,userPass,userRole
+        userAge,userGender,emailAdd,userPwd,userRole
         FROM Users
         WHERE userID = ${req.params.id}
         `;
@@ -94,43 +96,45 @@ class Users {
     });
   }
 
-  login(req, res) {
-    const { emailAdd, userPwd } = req.body;
-    const qry = `
-    SELECT UserID,firstName,lastName,userAge,gender,emailAdd,userPwd,userRole
-          FROM Users
-          WHERE emailAdd='${emailAdd}';
-    `;
-    db.query(qry, async (err, result) => {
-      if (err) throw err;
-      if (!result?.length) {
-        res.json({
-          status: res.statusCode,
-          msg: "wrong email provided",
-        });
-      } else {
-        //validate pswd
-        const validPass = await compare(userPwd, result[0].userPwd);
-        if (validPass) {
-          const token = createToken({
-            emailAdd,
-            userPwd,
-          });
-          res.json({
+    login(req, res) {
+        const { emailAdd, userPwd } = req.body;
+        const qry = `
+        SELECT UserID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
+            FROM Users
+            WHERE emailAdd='${emailAdd}';
+        `;
+        db.query(qry, async (err, result) => {
+        if (err) throw err;
+        if (!result?.length) {
+            res.json({
             status: res.statusCode,
-            msg: "You're logged in.",
-            token,
-            result: result[0],
-          });
+            msg: "wrong email provided",
+            });
         } else {
-          res.json({
-            status: res.statusCode,
-            msg: " Please provide the correct password.",
-          });
+            //validate pswd
+            const validPass = await compare(userPwd, result[0].userPwd);
+            if (validPass) {
+            const token = createToken({
+                emailAdd,
+                userPwd,
+            });
+            res.json({
+                status: res.statusCode,
+                msg: "You're logged in.",
+                token,
+                result: result[0],
+            });
+            } else {
+            res.json({
+                status: res.statusCode,
+                msg: " Please provide the correct password.",
+            });
+            }
         }
-      }
-    });
-  }
+        });
+    }
+
+
 }
 
 export { Users };

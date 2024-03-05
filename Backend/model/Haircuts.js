@@ -68,7 +68,7 @@ class Haircuts {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        msg: "product deleted",
+        msg: "Haircut deleted",
       });
     });
   }
