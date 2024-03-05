@@ -47,17 +47,6 @@ userRouter.post("/login", bodyParser.json(), (req, res) => {
     });
   }
 });
-userRouter.post('/logout', verifyToken, (req, res) => {
-  const { user } = req;
-
-  // Add the current token to the blacklist
-  tokenBlacklist.add(req.header('Authorization'));
-
-  res.json({
-    status: res.statusCode,
-    msg: ` ${user.firstName} has been logged out.`,
-  });
-});
 userRouter.delete("/delete/:id", (req, res) => {
   try {
     users.deleteUser(req, res);
