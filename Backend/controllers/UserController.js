@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { users } from "../model/index.js";
+import { verifyToken } from "../middleware/AuthenticateUser.js";
 
 const userRouter = express.Router();
 //fetch users
@@ -46,15 +47,16 @@ userRouter.post("/login", bodyParser.json(), (req, res) => {
     });
   }
 });
-userRouter.post("/logout", bodyParser.json(), (req, res) => {
-  try {
-    users.logout(req, res);
-  } catch (error) {
-    res.json({
-      status: res.statusCode,
-      msg: "Failed to log out",
-    });
-  }
+userRouter.post('/logout', verifyToken, (req, res) => {
+  const { user } = req;
+
+  // Add the current token to the blacklist
+  tokenBlacklist.add(req.header('Authorization'));
+
+  res.json({
+    status: res.statusCode,
+    msg: ` ${user.firstName} has been logged out.`,
+  });
 });
 userRouter.delete("/delete/:id", (req, res) => {
   try {

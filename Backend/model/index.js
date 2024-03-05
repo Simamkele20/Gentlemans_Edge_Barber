@@ -5,4 +5,4 @@ import { Stylists } from "./Stylists.js";
 let users = new Users();
 let haircuts = new Haircuts();
 let stylists = new Stylists();
-export { users, haircuts, stylists };
+export { users, haircuts, stylists}
