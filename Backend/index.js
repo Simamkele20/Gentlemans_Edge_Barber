@@ -1,6 +1,5 @@
 import { express, userRouter } from "./controllers/UserController.js";
 import { haircutRouter } from "./controllers/HaircutsController.js";
-import { stylistRouter } from "./controllers/StylistsController.js";
 import cookieParser from "cookie-parser";
 import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from 'path'
@@ -36,7 +35,6 @@ res.status(200).sendFile(path.join(__dirname,'./static/index.html'))
 })
 app.use('/users',userRouter)
 app.use('/haircuts',haircutRouter)
-app.use('/stylists',stylistRouter)
 app.use(errorHandling)
 app.listen(port,()=>{
     console.log(`server is running on ${port}`);
