@@ -6,6 +6,7 @@ import path from 'path'
 import { config } from "dotenv";
 import cors from 'cors'
 import { staffRouter } from "./controllers/StaffController.js";
+import { bookingRouter } from "./controllers/BookingController.js";
 
 config()
 
@@ -38,6 +39,7 @@ res.status(200).sendFile(path.join(__dirname,'./static/index.html'))
 app.use('/users',userRouter)
 app.use('/services',serviceRouter)
 app.use('/staff',staffRouter)
+app.use('/booking',bookingRouter)
 app.use(errorHandling)
 
 
