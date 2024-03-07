@@ -1,10 +1,12 @@
 import { express, userRouter } from "./controllers/UserController.js";
-import { haircutRouter } from "./controllers/HaircutsController.js";
+import {  serviceRouter } from "./controllers/ServiceController.js";
 import cookieParser from "cookie-parser";
 import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from 'path'
 import { config } from "dotenv";
 import cors from 'cors'
+import { staffRouter } from "./controllers/StaffController.js";
+
 config()
 
 const app=express()
@@ -20,7 +22,7 @@ res.header("Access-Control-Allow-Headers","*")
 res.header("Access-Control-Expose-Headers","*");
 next();
 }) 
-
+ 
 app.use(
     express.static('./static'),
     express.json(),
@@ -34,8 +36,13 @@ app.get('^/$|/barber',(req,res)=>{
 res.status(200).sendFile(path.join(__dirname,'./static/index.html'))
 })
 app.use('/users',userRouter)
-app.use('/haircuts',haircutRouter)
+app.use('/services',serviceRouter)
+app.use('/staff',staffRouter)
 app.use(errorHandling)
+
+
+
+
 app.listen(port,()=>{
     console.log(`server is running on ${port}`);
 })
