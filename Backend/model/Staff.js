@@ -1,12 +1,12 @@
 import { connection as db } from "../config/index.js";
-class Haircuts {
-  fetchHaircuts(req, res) {
+
+class Staff {
+  fetchStaff(req, res) {
     const qry = `
-        SELECT
-        cutID,cutName ,cutAmount,cutDescription,cutUrl,userID
-        FROM Haircuts
-        
+        SELECT staffID,employeeFullname,JobTittle,staffUrl,staffDescription
+        FROM Staff
         `;
+
     db.query(qry, (err, results) => {
       if (err) throw err;
       res.json({
@@ -15,62 +15,63 @@ class Haircuts {
       });
     });
   }
-  fetchHaircut(req, res) {
+  fetchEmployee(req, res) {
     const qry = `
-        cutID,cutName ,cutAmount,cutDescription,cutUrl,userID
-        FROM Haircuts
-        WHERE cutID=${req.params.id}
+    SELECT staffID,,employeeFullname,JobTittle,staffUrl,staffDescription
+    FROM Staff
+        WHERE staffID = ${req.params.id}
         `;
+
     db.query(qry, (err, result) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        result: result[0]
+        result,
       });
     });
   }
-  addHaircut(req, res) {
-    const qry = `INSERT INTO Haircuts SET ?;`;
+  addEmployee(req, res) {
+    const qry = `INSERT INTO Staff SET ?;`;
 
     db.query(qry, [req.body], (err) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        msg: "new haircut was added",
+        msg: "new employee was added",
       });
     });
   }
 
-  async updateHaircut(req, res) {
+  async updateEmployee(req, res) {
     const data = req.body;
     if (data?.userPwd) {
       data.userPwd = await hash(data?.userPwd, 8);
     }
     const qry = `
-    UPDATE Haircuts 
+    UPDATE Staff
     SET ?
-    WHERE cutID=${req.params.id};`;
+    WHERE staffID=${req.params.id};`;
     db.query(qry, [data], (err) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        msg: "Haircut updated",
+        msg: "Employee updated",
       });
     });
   }
 
-  deleteHaircut(req, res) {
+  deleteEmployee(req, res) {
     const qry = `
-     DELETE FROM Haircuts
-     WHERE cutID=${req.params.id}
+     DELETE FROM Staff
+     WHERE staffID=${req.params.id}
   `;
     db.query(qry, (err) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        msg: "Haircut deleted",
+        msg: "Employee deleted",
       });
     });
   }
 }
-export { Haircuts };
+export { Staff };

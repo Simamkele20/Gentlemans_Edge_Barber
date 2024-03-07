@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import { users } from "../model/index.js";
 import { verifyToken } from "../middleware/AuthenticateUser.js";
-
 const userRouter = express.Router();
 //fetch users
 userRouter.get("/", (req, res) => {
@@ -37,6 +36,20 @@ userRouter.post("/register", bodyParser.json(), (req, res) => {
     });
   }
 });
+
+// vevrify token
+userRouter.post("/verify", (req, res) => {
+  try {
+    users.verifyToken(req, res);
+  } catch (e) {
+    res.json({
+      status: res.statusCode,
+      msg: "Token in not verified",
+    });
+  }
+});
+
+// login
 userRouter.post("/login", bodyParser.json(), (req, res) => {
   try {
     users.login(req, res);
@@ -47,6 +60,7 @@ userRouter.post("/login", bodyParser.json(), (req, res) => {
     });
   }
 });
+// delete
 userRouter.delete("/delete/:id", (req, res) => {
   try {
     users.deleteUser(req, res);
@@ -57,6 +71,7 @@ userRouter.delete("/delete/:id", (req, res) => {
     });
   }
 });
+// update
 userRouter.patch("/update/:id", bodyParser.json(), (req, res) => {
   try {
     users.updateUser(req, res);

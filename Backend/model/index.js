@@ -1,7 +1,9 @@
 import { Users } from "./Users.js";
-import { Haircuts } from "./Haircuts.js";
+import { Services } from "./Service.js";
+import { Staff } from "./Staff.js";
 
 //create objects
 let users = new Users();
-let haircuts = new Haircuts();
-export { users, haircuts}
+let services = new Services();
+let staff = new Staff();
+export { users, services, staff };

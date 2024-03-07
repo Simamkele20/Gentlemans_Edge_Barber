@@ -1,12 +1,11 @@
 import { connection as db } from "../config/index.js";
 import { hash, compare } from "bcrypt";
-import { createToken} from "../middleware/AuthenticateUser.js"
-
+import { createToken } from "../middleware/AuthenticateUser.js";
 
 class Users {
   fetchUsers(req, res) {
     const qry = `
-        SELECT UserID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
+        SELECT userID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
         FROM Users
         `;
 
@@ -20,7 +19,7 @@ class Users {
   }
   fetchUser(req, res) {
     const qry = `
-        SELECT UserID,firstName,lastName,
+        SELECT userID,firstName,lastName,
         userAge,userGender,emailAdd,userPwd,userRole
         FROM Users
         WHERE userID = ${req.params.id}
@@ -34,36 +33,38 @@ class Users {
       });
     });
   }
+
+  // create a user
   async createUser(req, res) {
-    //payload
+    // Payload
     let data = req.body;
-    data.userPwd = await hash(data?.userPwd, 8);
+    data.userPwd = await hash(data?.userPwd, 10);
     let user = {
       emailAdd: data.emailAdd,
       userPwd: data.userPwd,
     };
     const qry = `
-      INSERT INTO Users
-      SET ?;
-      `;
+        insert into Users
+        set ?;`;
     db.query(qry, [data], (err) => {
       if (err) {
         res.json({
           status: res.statusCode,
-          msg: "already exists.please use another email address",
+          msg: "This email address already exists.",
         });
       } else {
-        //create token
+        //  Create a token
         let token = createToken(user);
         res.json({
           status: res.statusCode,
           token,
-          msg: "You're registered",
+          msg: "You're registered.",
         });
       }
     });
   }
 
+  // Update User
   async updateUser(req, res) {
     const data = req.body;
     if (data?.userPwd) {
@@ -82,6 +83,7 @@ class Users {
     });
   }
 
+  // Delete User
   deleteUser(req, res) {
     const qry = `
    DELETE FROM Users
@@ -96,45 +98,44 @@ class Users {
     });
   }
 
-    login(req, res) {
-        const { emailAdd, userPwd } = req.body;
-        const qry = `
-        SELECT UserID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
+  // Login
+  login(req, res) {
+    const { emailAdd, userPwd } = req.body;
+    const qry = `
+        SELECT userID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
             FROM Users
             WHERE emailAdd='${emailAdd}';
         `;
-        db.query(qry, async (err, result) => {
-        if (err) throw err;
-        if (!result?.length) {
-            res.json({
-            status: res.statusCode,
-            msg: "wrong email provided",
-            });
-        } else {
-            //validate pswd
-            const validPass = await compare(userPwd, result[0].userPwd);
-            if (validPass) {
-            const token = createToken({
-                emailAdd,
-                userPwd,
-            });
-            res.json({
-                status: res.statusCode,
-                msg: "You're logged in.",
-                token,
-                result: result[0],
-            });
-            } else {
-            res.json({
-                status: res.statusCode,
-                msg: " Please provide the correct password.",
-            });
-            }
-        }
+    db.query(qry, async (err, result) => {
+      if (err) throw err;
+      if (!result?.length) {
+        res.json({
+          status: res.statusCode,
+          msg: "wrong email provided",
         });
-    }
-
-
+      } else {
+        //validate pswd
+        const validPass = await compare(userPwd, result[0].userPwd);
+        if (validPass) {
+          const token = createToken({
+            emailAdd,
+            userPwd,
+          });
+          res.json({
+            status: res.statusCode,
+            msg: "You're logged in.",
+            token,
+            result: result[0],
+          });
+        } else {
+          res.json({
+            status: res.statusCode,
+            msg: " Please provide the correct password.",
+          });
+        }
+      }
+    });
+  }
 }
 
 export { Users };
