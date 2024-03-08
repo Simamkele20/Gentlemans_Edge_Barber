@@ -64,7 +64,7 @@ class Users {
     });
   }
 
-  // Update User
+  //  Update User
   async updateUser(req, res) {
     const data = req.body;
     if (data?.userPwd) {
