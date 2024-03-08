@@ -13,13 +13,16 @@
             <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
                 <ul class="navbar-nav nav-underline  ms-auto text-center mb-lg-0 mx-end">
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link ">Home </router-link>
+                        <router-link to="/home" class="nav-link ">Home </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/about" class="nav-link ">About </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/services" class="nav-link">Services </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/bookings" class="nav-link">Bookings </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/admin" class="nav-link">Admin </router-link>
