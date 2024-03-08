@@ -1,11 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { services } from "../model/index.js";
+import { verifyToken } from "../middleware/AuthenticateUser.js";
+
 
 const serviceRouter = express.Router();
 
 //fetch all haircuts
-serviceRouter.get("/", (req, res) => {
+serviceRouter.get("/", verifyToken,(req, res) => {
   try {
     services.fetchServices(req, res);
   } catch (e) {
@@ -25,7 +27,7 @@ serviceRouter.get("/:id", (req, res) => {
     });
   }
 });
-serviceRouter.post("/addService", bodyParser.json(), (req, res) => {
+serviceRouter.post("/addService",  bodyParser.json(), (req, res) => {
   try {
     services.addService(req, res);
   } catch (e) {

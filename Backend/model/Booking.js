@@ -22,26 +22,26 @@ class Bookings {
     });
   }
 
-  //   //   one booking
-  //   fetchBooking(req, res) {
-  //     const qry = `
-  //     SELECT
-  //     bookID,
-  //     bookDate,
-  //     bookStart,
-  //     bookEnd,
-  //     bookID
-  //     FROM Bookings
-  //    WHERE bookID = ${req.params.id}
-  //         `;
-  //     db.query(qry, (err, result) => {
-  //       if (err) throw err;
-  //       res.json({
-  //         status: res.statusCode,
-  //         result: result[0],
-  //       });
-  //     });
-  //   }
+  //   one booking
+  fetchBooking(req, res) {
+    const qry = `
+      SELECT
+      bookID,
+      bookDay,
+      bookStart,
+      bookEnd,
+      bookID
+      FROM Bookings
+     WHERE bookID = ${req.params.id}
+          `;
+    db.query(qry, (err, result) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        result: result[0],
+      });
+    });
+  }
 
   // add Booking
   async addBooking(req, res) {
