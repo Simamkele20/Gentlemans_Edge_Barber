@@ -7,7 +7,7 @@ import { verifyToken } from "../middleware/AuthenticateUser.js";
 const serviceRouter = express.Router();
 
 //fetch all haircuts
-serviceRouter.get("/", verifyToken,(req, res) => {
+serviceRouter.get("/", (req, res) => {
   try {
     services.fetchServices(req, res);
   } catch (e) {
