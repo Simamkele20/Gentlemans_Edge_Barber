@@ -8,7 +8,7 @@
   </template>
    
   <script>
-  import Footer from "./components/Footer.vue"
+  import Footer from "./components/FooterView.vue"
   import navbar from './components/navbar.vue';
   
   
@@ -21,5 +21,5 @@
   }
   </script>
    
-  <style  src="@/assets/css/style.css"></style>
+  <style ></style>
    
