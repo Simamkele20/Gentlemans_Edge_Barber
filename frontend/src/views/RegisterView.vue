@@ -3,23 +3,23 @@
   <form class="px-4 py-3">
     <div class="mb-3">
       <label class="form-label">Name</label>
-      <input type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder=" Enter Your Name">
+      <input v-model="payload.firstName" type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder=" Enter Your Name">
     </div>
     <div class="mb-3">
       <label class="form-label">Surname</label>
-      <input type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="Enter Your Surname">
+      <input v-model="payload.lastName"  type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="Enter Your Surname">
     </div>
     <div class="mb-3">
       <label class="form-label">Age</label>
-      <input type="number" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="EnterYour Age">
+      <input v-model="payload.userAge" type="number" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="EnterYour Age">
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail1" class="form-label">Gender</label>
-      <input type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="Provide your Gender">
+      <input v-model="payload.userGender" type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="Provide your Gender">
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail1" class="form-label">UserRole</label>
-      <input  class="form-control w-50" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20" placeholder="Enter Your Role">
+      <input v-model="payload.userRole" class="form-control w-50" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20" placeholder="Enter Your Role">
     <ul class="dropdown-menu">
       <li><a class="dropdown-item"  href="#">User</a></li>
       <li><a class="dropdown-item" href="#">Admin</a></li>
@@ -28,15 +28,15 @@
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+      <input v-model="payload.emailAdd" type="email" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="email@example.com">
     </div>
    
     <div class="mb-3">
       <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control w-50" id="exampleDropdownFormPassword1" placeholder="Password">
+      <input v-model="payload.userPwd" type="password" class="form-control w-50" id="exampleDropdownFormPassword1" placeholder="Password">
     </div>
   
-    <button type="submit" class="btn btn-dark">Sign Up</button>
+    <button  @click.prevent="Register()" type="submit" class="btn btn-dark">Sign Up</button>
   </form>
  
 
@@ -47,9 +47,28 @@
     
     
   export default {
+    data() {
+        return{
+        payload: {
+          "userID": null,
+        "firstName": null,
+        "lastName": null,
+        "userAge": null,
+        "userGender": null,
+        "emailAdd": null,
+        "userPwd": null,
+        "userRole": null
+    }
+        }
+    },
   
     components: {
   
-    }
+    },
+    methods: {
+        Register() {
+        this.$store.dispatch('register', this.payload)
+}
+}
   }
   </script>
