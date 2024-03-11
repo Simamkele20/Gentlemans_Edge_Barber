@@ -3,8 +3,8 @@ import axios from "axios";
 import sweet from "sweetalert";
 const URL = "https://gentlemans-edge-barber.onrender.com/";
 import router from "../router";
-const { cookies } = useCookies();
 import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 import AuthenticatedUser from "../service/AuthenticatedUser";
 
 export default createStore({
@@ -125,7 +125,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving users.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -169,7 +169,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when updating a user.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -224,7 +224,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving services.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
