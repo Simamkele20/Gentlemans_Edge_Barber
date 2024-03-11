@@ -2,6 +2,10 @@ import { createStore } from "vuex";
 import axios from "axios";
 import sweet from "sweetalert";
 const URL = "https://gentlemans-edge-barber.onrender.com/";
+import router from "../router";
+const { cookies } = useCookies();
+import { useCookies } from "vue3-cookies";
+import AuthenticatedUser from "../service/AuthenticatedUser";
 
 export default createStore({
   state: {
@@ -42,19 +46,31 @@ export default createStore({
     },
     setLogin(state, value) {
       state.login = value;
-    }
+    },
   },
   actions: {
     async register(context, payload) {
       try {
-        let { msg } = await axios.post(`${URL}users/register`, payload);
-        context.dispatch("fetchUsers");
-        sweet({
-          title: "User Registered.",
-          text: msg,
-          icon: "success",
-          timer: 2000,
-        });
+        let { msg, token } = (await axios.post(`${URL}users/register`, payload))
+          .data;
+        if (token) {
+          context.dispatch("fetchUsers");
+          sweet({
+            title: "Register.",
+            text: msg,
+            icon: "success",
+            timer: 2000,
+          });
+          router.push({ name: "login" });
+        } else {
+          sweet({
+            title: "Register",
+            text: msg,
+            icon: "error",
+            timer: 2000,
+          });
+    
+        }
       } catch (e) {
         sweet({
           title: "Error",
@@ -66,18 +82,35 @@ export default createStore({
     },
     async Login(context, payload) {
       try {
-        let { msg } = await axios.post(`${URL}users/login`, payload);
-        context.dispatch("fetchUsers");
-        sweet({
-          title: "You are logged in.",
-          text: msg,
-          icon: "success",
-          timer: 2000,
-        });
+        let { msg, result, token } = (
+          await axios.post(`${URL}users/login`, payload)
+        ).data;
+        if (result) {
+          context.commit("setUser", { msg, result });
+          cookies.set("VerifiedUser", { token, msg, result });
+          // Authorization
+          AuthenticatedUser.ApplyingToken(token);
+          sweet({
+            title: msg,
+            text: `Welcome Back,
+            ${result?.firstName} ${result?.lastName}`,
+            icon: "success",
+            timer: 2000,
+          });
+          router.push({ name: "home" });
+        } else {
+          sweet({
+            title: "Login",
+            text: msg,
+            icon: "error",
+            timer: 2000,
+          });
+        }
       } catch (e) {
+        //'Please contact the administrator'
         sweet({
           title: "Error",
-          text: "Please try again later",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
