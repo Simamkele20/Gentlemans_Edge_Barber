@@ -21,14 +21,17 @@
                     <li class="nav-item">
                         <router-link to="/services" class="nav-link">Services </router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item"  v-show="user">
                         <router-link to="/bookings" class="nav-link">Bookings </router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-show="isAdmin">
                         <router-link to="/admin" class="nav-link">Admin </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/contact" class="nav-link">Contact</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/profile" class="nav-link">Profile</router-link>
                     </li>
                 </ul>
             </div>
@@ -37,8 +40,21 @@
 </template>
 
 <script>
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 export default {
     name: 'navBarComp',
+
+    computed:{
+        user(){
+            return this.$store.state.user || cookies?.get("VerifiedUser")
+        },
+        isAdmin() {
+            return this.user?.result?.userRole == 'admin'
+        }
+   
+        
+    }
 }
 </script>
 

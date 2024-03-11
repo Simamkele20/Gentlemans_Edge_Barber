@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "../views/LoginView.vue";
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 
 const routes = [
   {
@@ -41,14 +43,33 @@ const routes = [
     component: () => import("../views/RegisterView.vue"),
   },
   {
+    path: "/logout",
+    name: "logout",
+    component: () => import("../views/LoginView.vue"),
+    beforeEnter() {
+      cookies.remove("VerifiedUser")
+      router.push({ name: "login" })
+      location.reload()
+    }
+  },
+  {
     path: "/admin",
     name: "admin",
-    component: () => import("../views/AdminView.vue"),
+    component: () => import("../views/AdminView.vue")
   },
   {
     path: "/contact",
     name: "contact",
     component: () => import("../views/ContactView.vue"),
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("../views/ProfileVIew.vue"),
+    beforeEnter(){
+      if(!cookies.get("VerifiedUser"))
+      router.push({name : "login" })
+    }
   },
   {
     path: "/users",

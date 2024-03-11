@@ -16,7 +16,6 @@
             </div>
             <button @click.prevent="Login()" type="submit" class="btn btn-dark">Sign in</button>
         </form>
-        <div class="dropdown-divider"> </div>
         <router-link to="/register"><a class="dropdown-item link-dark link-underline-light " href="#">New around here?
                 Sign up</a></router-link>
     </div>
