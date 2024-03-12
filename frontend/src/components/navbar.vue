@@ -21,7 +21,8 @@
                     <li class="nav-item">
                         <router-link to="/services" class="nav-link">Services </router-link>
                     </li>
-                    <li class="nav-item"  v-show="user">
+                   
+                    <li class="nav-item" v-show="user" >
                         <router-link to="/bookings" class="nav-link">Bookings </router-link>
                     </li>
                     <li class="nav-item" v-show="isAdmin">
@@ -30,8 +31,11 @@
                     <li class="nav-item">
                         <router-link to="/contact" class="nav-link">Contact</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="user">
                         <router-link to="/profile" class="nav-link">Profile</router-link>
+                    </li>
+                    <li class="nav-item" v-else>
+                        <router-link to="/profile" class="nav-link">Login</router-link>
                     </li>
                 </ul>
             </div>

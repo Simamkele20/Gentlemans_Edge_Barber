@@ -15,17 +15,12 @@
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail1" class="form-label">Gender</label>
-      <input v-model="payload.userGender" type="text" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="Provide your Gender">
+      <select v-model="payload.userGender"  type="text" class="form-control w-50" id="exampleDropdownFormEmail1"  placeholder="Please Select your Gender" >
+        <option value="user">Male</option>
+        <option value="admin">Female</option>
+      </select>
     </div>
-    <div class="mb-3">
-      <label for="exampleDropdownFormEmail1" class="form-label">UserRole</label>
-      <input v-model="payload.userRole" class="form-control w-50" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20" placeholder="Enter Your Role">
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item"  href="#">User</a></li>
-      <li><a class="dropdown-item" href="#">Admin</a></li>
-    </ul>
-
-    </div>
+   
     <div class="mb-3">
       <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
       <input v-model="payload.emailAdd" type="email" class="form-control w-50" id="exampleDropdownFormEmail1" placeholder="email@example.com">

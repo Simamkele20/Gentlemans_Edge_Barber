@@ -37,10 +37,12 @@ const routes = [
     name: "bookings",
     component: () => import("../views/BookingsView.vue"),
   },
+
   {
     path: "/register",
     name: "register",
     component: () => import("../views/RegisterView.vue"),
+    
   },
   {
     path: "/logout",
