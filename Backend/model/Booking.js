@@ -95,8 +95,6 @@ class Bookings {
       `;
 
         db.query(
-         insertBooking
-  (err) => {
             if (err) 
             res.json({
                res.statusCOde
@@ -112,7 +110,7 @@ class Bookings {
         );
       }
     );
-  }
+  
 
   //   delete Booking
 
