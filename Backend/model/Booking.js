@@ -85,7 +85,7 @@ class Bookings {
         // Insert the new booking into the database
         const insertBooking = `
         INSERT INTO Bookings (bookDay, bookStart, bookEnd,servName,employeeFullname)
-        VALUES (?, ?, ?);
+        VALUES (?, ?, ?,?,?);
       `;
 
         db.query(
