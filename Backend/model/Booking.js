@@ -56,6 +56,9 @@ class Bookings {
       bookDay: data.bookDay,
       bookStart: data.bookStart,
       bookEnd: data.bookEnd,
+      servName: data.servName,
+      employeeFullname: data.employeeFullname,
+      firstName: data.firstName,
     };
 
     // Check if the booking details already exist
