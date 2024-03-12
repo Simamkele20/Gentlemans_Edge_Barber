@@ -62,16 +62,17 @@ class Bookings {
     };
 
     // Check if the booking details already exist
-    const checkAvailablity = `
-      SELECT bookID
-      FROM Bookings
-      WHERE bookDay = ? AND bookStart = ? AND bookEnd = ?;
-    `;
+    const checkAvailability = `
+  SELECT bookID
+  FROM Bookings
+  WHERE bookDay = ? AND bookStart = ? AND bookEnd = ?;
+`;
 
-    db.query(
-      checkAvailablity,
-      [user.bookDay, user.bookStart, user.bookEnd],
-      (err, results) => {
+
+  db.query(
+  checkAvailability,
+  [user.bookDay, user.bookStart, user.bookEnd],
+  (err, results) => {
         if (err) {
           console.error(err);
           return res
@@ -94,13 +95,14 @@ class Bookings {
       `;
 
         db.query(
-          insertBooking,
-          [user.bookDay, user.bookStart, user.bookEnd, user.servName, user.employeeFullName,user.fistName],
-          (err) => {
-            if (err) {
-              console.error(err);
-              return res.status(500).json({ error: "Error adding booking" });
-            }
+         insertBooking,
+  [user.bookDay, user.bookStart, user.bookEnd, user.servName, user.employeeFullName, user.firstName],
+  (err) => {
+            if (err) 
+            res.json({
+               res.statusCOde
+                msg: "Error adding booking"
+            })
 
             res.json({
               status: res.statusCode,
