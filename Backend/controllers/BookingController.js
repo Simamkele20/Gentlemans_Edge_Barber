@@ -6,7 +6,7 @@ import { verifyToken } from "../middleware/AuthenticateUser.js";
 const bookingRouter = express.Router();
 
 //fetch all bookings
-bookingRouter.get("/", verifyToken,(req, res) => {
+bookingRouter.get("/", (req, res) => {
   try {
     bookings.fetchBookings(req, res);
   } catch (e) {
@@ -17,7 +17,7 @@ bookingRouter.get("/", verifyToken,(req, res) => {
   }
 });
 // fetch booking
-  bookingRouter.get("/:id", verifyToken, (req, res) => {
+  bookingRouter.get("/:id", (req, res) => {
     try {
         bookings.fetchBooking(req, res);
     } catch (e) {
@@ -29,7 +29,7 @@ bookingRouter.get("/", verifyToken,(req, res) => {
   });
 
 // add booking
-bookingRouter.post("/addBooking",verifyToken, bodyParser.json(), (req, res) => {
+bookingRouter.post("/addBooking",bodyParser.json(), (req, res) => {
   try {
     bookings.addBooking(req, res);
   } catch (e) {
@@ -41,7 +41,7 @@ bookingRouter.post("/addBooking",verifyToken, bodyParser.json(), (req, res) => {
 });
 
 //   delete booking
-bookingRouter.delete("/delete/:id", verifyToken, (req, res) => {
+bookingRouter.delete("/delete/:id",  (req, res) => {
   try {
     bookings.deleteBooking(req, res);
   } catch (e) {
@@ -53,7 +53,7 @@ bookingRouter.delete("/delete/:id", verifyToken, (req, res) => {
 });
 
 //   update booking
-bookingRouter.patch("/update/:id",verifyToken, bodyParser.json(), (req, res) => {
+bookingRouter.patch("/update/:id",bodyParser.json(), (req, res) => {
   try {
     bookings.updateBooking(req, res);
   } catch (e) {
