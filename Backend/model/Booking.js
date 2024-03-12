@@ -90,13 +90,12 @@ class Bookings {
 
         // Insert the new booking into the database
         const insertBooking = `
-        INSERT INTO Bookings (bookDay, bookStart, bookEnd,servName,employeeFullname,firstName)
-        VALUES (?, ?, ?,?,?,?);
+        INSERT INTO Bookings SET?;
+        
       `;
 
         db.query(
-         insertBooking,
-  [user.bookDay, user.bookStart, user.bookEnd, user.servName, user.employeeFullName, user.firstName],
+         insertBooking
   (err) => {
             if (err) 
             res.json({
