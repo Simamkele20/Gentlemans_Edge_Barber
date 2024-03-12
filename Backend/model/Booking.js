@@ -98,7 +98,7 @@ class Bookings {
           [user.bookDay, user.bookStart, user.bookEnd, user.servName, user.employeeFullName,user.fistName],
           (err) => {
             if (err) {
-              console.error(insertErr);
+              console.error(err);
               return res.status(500).json({ error: "Error adding booking" });
             }
 
