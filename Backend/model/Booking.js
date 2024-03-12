@@ -9,6 +9,7 @@ class Bookings {
         bookDay,
         bookStart,
         bookEnd,
+        servName,
         bookID
         FROM Bookings
         
@@ -30,6 +31,7 @@ class Bookings {
       bookDay,
       bookStart,
       bookEnd,
+      servName,
       bookID
       FROM Bookings
      WHERE bookID = ${req.params.id}
@@ -80,7 +82,7 @@ class Bookings {
 
         // Insert the new booking into the database
         const insertBooking = `
-        INSERT INTO Bookings (bookDay, bookStart, bookEnd)
+        INSERT INTO Bookings (bookDay, bookStart, bookEnd,servName)
         VALUES (?, ?, ?);
       `;
 
