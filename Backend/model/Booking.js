@@ -65,7 +65,7 @@ async addBooking(req, res) {
     WHERE bookDay = ? AND bookTime = ?;
   `;
 
-  db.query(checkAvailability, [user.bookDay, user.bookTime, (err, results) => {
+  db.query(checkAvailability, [user.bookDay, user.bookTime]) (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: "Error checking booking existence" });
