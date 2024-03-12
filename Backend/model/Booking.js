@@ -49,68 +49,60 @@ class Bookings {
     });
   }
 
-  // add Booking
-  async addBooking(req, res) {
-    let data = req.body;
-    let user = {
-      bookDay: data.bookDay,
-      bookStart: data.bookStart,
-      bookEnd: data.bookEnd,
-      servName: data.servName,
-      employeeFullname: data.employeeFullname,
-      firstName: data.firstName,
-    };
+// add Booking
+async addBooking(req, res) {
+  let data = req.body;
+  let user = {
+    bookDay: data.bookDay,
+    bookStart: data.bookStart,
+    bookEnd: data.bookEnd,
+    servName: data.servName,
+    employeeFullname: data.employeeFullname,
+    firstName: data.firstName,
+  };
 
-    // Check if the booking details already exist
-    const checkAvailability = `
-  SELECT bookID
-  FROM Bookings
-  WHERE bookDay = ? AND bookStart = ? AND bookEnd = ?;
-`;
+  // Check if the booking details already exist
+  const checkAvailability = `
+    SELECT bookID
+    FROM Bookings
+    WHERE bookDay = ? AND bookStart = ? AND bookEnd = ?;
+  `;
 
+  db.query(checkAvailability, [user.bookDay, user.bookStart, user.bookEnd], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error checking booking existence" });
+    }
 
-  db.query(
-  checkAvailability,
-  [user.bookDay, user.bookStart, user.bookEnd],
-  (err, results) => {
-        if (err) {
-          console.error(err);
-          return res
-            .status(500)
-            .json({ error: "Error checking booking existence" });
-        }
+    if (results.length > 0) {
+      // Booking details already exist
+      return res.json({
+        status: res.statusCode,
+        msg: "The booking details already exist.",
+      });
+    }
 
-        if (results.length > 0) {
-          // Booking details already exist
-          return res.json({
-            status: res.statusCode,
-            msg: "The booking details already exist.",
-          });
-        }
+    // Insert the new booking into the database
+    const insertBooking = `
+      INSERT INTO Bookings
+      SET ?;
+    `;
 
-        // Insert the new booking into the database
-        const insertBooking = `
-        INSERT INTO Bookings SET?;
-        
-      `;
-
-        db.query(
-            if (err) 
-            res.json({
-               res.statusCOde
-                msg: "Error adding booking"
-            })
-
-            res.json({
-              status: res.statusCode,
-              details: user,
-              msg: "Booking added successfully.",
-            });
-          }
-        );
+    db.query(insertBooking, [user], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Error adding booking", details: err });
       }
-    );
-  
+
+      res.json({
+        status: res.statusCode,
+        details: user,
+        msg: "Booking added successfully.",
+        insertedId: result.insertId,
+      });
+    });
+  });
+}
 
   //   delete Booking
 
