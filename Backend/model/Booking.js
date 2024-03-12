@@ -7,8 +7,7 @@ class Bookings {
         SELECT
         bookID,
         bookDay,
-        bookStart,
-        bookEnd,
+        bookTime,
         servName,
         employeeFullname,
         firstName,
@@ -31,8 +30,7 @@ class Bookings {
       SELECT
       bookID,
       bookDay,
-      bookStart,
-      bookEnd,
+      bookTime,
       servName,
       employeeFullname,
       firstName,
@@ -54,8 +52,7 @@ async addBooking(req, res) {
   let data = req.body;
   let user = {
     bookDay: data.bookDay,
-    bookStart: data.bookStart,
-    bookEnd: data.bookEnd,
+    bookTime:data.bookTime,
     servName: data.servName,
     employeeFullname: data.employeeFullname,
     firstName: data.firstName,
@@ -65,10 +62,10 @@ async addBooking(req, res) {
   const checkAvailability = `
     SELECT bookID
     FROM Bookings
-    WHERE bookDay = ? AND bookStart = ? AND bookEnd = ?;
+    WHERE bookDay = ? AND bookTime = ?;
   `;
 
-  db.query(checkAvailability, [user.bookDay, user.bookStart, user.bookEnd], (err, results) => {
+  db.query(checkAvailability, [user.bookDay, user.bookTime, (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: "Error checking booking existence" });
