@@ -69,7 +69,6 @@ export default createStore({
             icon: "error",
             timer: 2000,
           });
-    
         }
       } catch (e) {
         sweet({
@@ -323,7 +322,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving staff.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -395,8 +394,7 @@ export default createStore({
     },
     async addBooking(context, add) {
       try {
-        let { msg } = await axios.post(`${URL}bookings/addBooking`, add);
-
+        let { msg } = await axios.post(`${URL}booking/addBooking`, add);
         context.dispatch("fetchBookings");
         sweet({
           title: "New Booking has been added",
@@ -407,7 +405,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when adding booking.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -415,14 +413,14 @@ export default createStore({
     },
     async fetchBookings(context) {
       try {
-        let { results } = (await axios.get(`${URL}bookings`)).data;
+        let { results } = (await axios.get(`${URL}booking`)).data;
         if (results) {
           context.commit("setBookings", results);
         }
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving bookings.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -430,7 +428,7 @@ export default createStore({
     },
     async fetchBooking(context, payload) {
       try {
-        let { result } = (await axios.get(`${URL}b/${payload.id}`)).data;
+        let { result } = (await axios.get(`${URL}booking/${payload.id}`)).data;
         if (result) {
           context.commit("setBooking", result);
         } else {
