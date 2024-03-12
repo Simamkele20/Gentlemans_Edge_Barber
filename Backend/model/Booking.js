@@ -35,7 +35,7 @@ class Bookings {
       bookEnd,
       servName,
       employeeFullname,
-      firstNme,
+      firstName,
       bookID
       FROM Bookings
      WHERE bookID = ${req.params.id}
