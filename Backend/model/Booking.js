@@ -27,16 +27,21 @@ class Bookings {
   //   one booking
   fetchBooking(req, res) {
     const qry = `
-      SELECT
-      bookID,
-      bookDay,
-      bookTime,
-      servName,
-      employeeFullname,
-      firstName,
-      bookID
-      FROM Bookings
-     WHERE bookID = ${req.params.id}
+     SELECT
+    b.bookID,
+    b.bookDay,
+    b.bookTime,
+    b.servName,
+    u.employeeFullname,
+    u.firstName
+FROM
+    Bookings b
+INNER JOIN
+    Users u ON b.userID = u.userID
+WHERE
+    u.userID = ${req.params.id};
+
+
           `;
     db.query(qry, (err, result) => {
       if (err) throw err;
