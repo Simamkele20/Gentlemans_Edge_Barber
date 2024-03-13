@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { bookings } from "../model/index.js";
-import { users } from "../model/index.js";
 import { verifyToken } from "../middleware/AuthenticateUser.js";
 
 const bookingRouter = express.Router();
@@ -18,7 +17,7 @@ bookingRouter.get("/", (req, res) => {
   }
 });
 // fetch booking
-  bookingRouter.get("/users/:id/booking", (req, res) => {
+  bookingRouter.get("/users/:id", (req, res) => {
     try {
         bookings.fetchBooking(req, res);
     } catch (e) {
