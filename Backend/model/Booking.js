@@ -38,7 +38,7 @@ FROM
 INNER JOIN
     Users ON Bookings.userID = Users.userID
 WHERE
-    userID = ${req.params.id};
+     Users.userID = ${req.params.id};
 
 
           `;
