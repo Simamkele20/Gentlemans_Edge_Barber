@@ -32,8 +32,7 @@ class Bookings {
     bookDay,
     bookTime,
     servName,
-    employeeFullname,
-    firstName
+    employeeFullname
 FROM
     Bookings 
 INNER JOIN
