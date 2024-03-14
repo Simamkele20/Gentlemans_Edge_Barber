@@ -185,7 +185,7 @@
                       <div class="letter">E</div>
                       <div class="letter">R</div>
 
-                      <p class="letter-full">Edge</p>
+                      <p class="letter-full">Shop </p>
                     </div>
                   </div>
                 </div>

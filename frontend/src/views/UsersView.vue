@@ -9,6 +9,9 @@
           <li class="nav-item mx-4">
             <a class="nav-link link-light">Users</a>
           </li>
+          <li class="nav-item mx-4">
+            <router-link to="/staff" class="nav-link link-light">Staff</router-link>
+          </li>
         </ul>
 
       </nav>
