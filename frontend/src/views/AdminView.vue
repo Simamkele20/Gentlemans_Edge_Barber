@@ -9,6 +9,9 @@
           <li class="nav-item mx-4">
             <router-link to="/users" class="nav-link link-light">Users</router-link>
           </li>
+          <li class="nav-item mx-4">
+            <router-link to="/staff" class="nav-link link-light">Staff</router-link>
+          </li>
         </ul>
 
       </nav>
@@ -105,7 +108,9 @@
     <thead>
       <tr>
         <th> Service ID</th>
+        <th> Service Img</th>
         <th>Service Name</th>
+        <th>Service Description</th>
         <th>Service AMount</th>
         <th> Action</th>
       </tr>
@@ -113,7 +118,9 @@
     <tbody class="text-center">
       <tr v-for="service in filterServ" :key="service.servID">
         <th scope="row"> {{ service.servID }}</th>
+        <td><img :src="service.servUrl" class="w-25"></td>
         <td>{{ service.servName }} </td>
+        <td>{{ service.servDescription }} </td>
         <td> R {{ service.servAmount }} </td>
         <td><button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID"> Edit</button>
         </td>

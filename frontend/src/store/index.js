@@ -135,18 +135,11 @@ export default createStore({
         let { result } = (await axios.get(`${URL}users/${payload.id}`)).data;
         if (result) {
           context.commit("setUser", result);
-        } else {
-          sweet({
-            title: "Retrieving a single user",
-            text: "User was not found",
-            icon: "info",
-            timer: 2000,
-          });
         }
       } catch (e) {
         sweet({
           title: "Error",
-          text: "A user was not found.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -428,7 +421,9 @@ export default createStore({
     },
     async fetchBooking(context, payload) {
       try {
-        let { result } = (await axios.get(`${URL}booking/${payload.id}`)).data;
+        let { result } = (
+          await axios.get(`${URL}/booking/users/${payload?.id}/booking`)
+        ).data;
         if (result) {
           context.commit("setBooking", result);
         } else {
@@ -440,10 +435,9 @@ export default createStore({
           });
         }
       } catch (e) {
-        console.log(e.message);
         sweet({
           title: "Error",
-          text: "A Booking was not found.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });

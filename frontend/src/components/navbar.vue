@@ -3,9 +3,9 @@
         id="Shift">
         <div class="container-fluid justify-content-center">
 
-            <a href="/">
-                <img src="https://i.ibb.co/CzqJpnD/240-F-520388550-EJo-XUs-Frmyig-XTm-U2n-ZLt-D13z45-Oi2lu.jpg"
-                    alt="Logo" class="w-25"> </a>
+            <a href="/home">
+                <img src="https://iili.io/JWELw4S.th.png" 
+                    alt="Logo" class="w-50"> </a>
             <button class="navbar-toggler mt-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -23,25 +23,24 @@
                         <router-link to="/services" class="nav-link">Services </router-link>
                     </li>
 
-                    <li class="nav-item" v-show="user">
-                        <router-link to="/bookings" class="nav-link">Bookings </router-link>
+                    <li class="nav-item" v-show="isUser">
+                        <router-link to="/booking" class="nav-link">Booking </router-link>
                     </li>
+                    <li class="nav-item" v-show="isAdmin">
+                        <router-link to="/bookings" class="nav-link">Bookings</router-link>
+                    </li>
+
                     <li class="nav-item" v-show="isAdmin">
                         <router-link to="/admin" class="nav-link">Admin </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/contact" class="nav-link">Contact</router-link>
                     </li>
-                    <li class="nav-item" v-if="user">
+                    <li class="nav-item">
                         <router-link to="/profile" class="nav-link">
                             <h4><i class="bi bi-person-circle"></i> </h4>
                         </router-link>
-                    </li>
-                    <li class="nav-item" v-else>
-                        <router-link to="/profile" class="nav-link">
-                            <h4><i class="bi bi-person-circle"></i> </h4>
-                        </router-link>
-                    </li>
+                    </li>   
                 </ul>
             </div>
         </div>
@@ -60,6 +59,9 @@ export default {
         },
         isAdmin() {
             return this.user?.result?.userRole == 'admin'
+        },
+        isUser() {
+            return this.user?.result?.userRole == 'user'
         }
 
 
