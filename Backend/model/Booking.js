@@ -113,7 +113,7 @@ async addBooking(req, res) {
 
   deleteBooking(req, res) {
     const qry = `
-     DELETE FROM Bookings
+     TRUNCATE  FROM Bookings
      WHERE bookID=${req.params.id}
   `;
     db.query(qry, (err) => {
