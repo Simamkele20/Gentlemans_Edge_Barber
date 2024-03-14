@@ -21,7 +21,7 @@ class Staff {
     FROM Staff
         WHERE staffID = ${req.params.id}
         `;
-
+    
     db.query(qry, (err, result) => {
       if (err) throw err;
       res.json({
