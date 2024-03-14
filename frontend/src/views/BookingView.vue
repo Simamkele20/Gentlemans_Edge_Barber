@@ -27,31 +27,17 @@
                 <option value="Saturday">Saturday</option>
 
               </select>
-              <h5 class="text-start">Book Start: </h5>
-              <select v-model="payload.bookStart" type="text" class="form-control ">
+              <h5 class="text-start">Book Time: </h5>
+              <select v-model="payload.bookTime" type="text" class="form-control ">
                 <option value=""></option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-              </select>
-              <h5 class="text-start mt-2">Book End: </h5>
-              <select v-model="payload.bookEnd" type="text" class="form-control ">
-                <option value=""></option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-                <option value="18:00">18:00</option>
+                <option value="09:00 - 10:00">09:00 - 10:00</option>
+                <option value="10:00 - 11:00">10:00 - 11:00</option>
+                <option value="11:00 - 12:00">11:00 - 12:00</option>
+                <option value="12:00 - 13:00">12:00 - 13:00</option>
+                <option value="13:00 - 14:00">13:00 - 14:00</option>
+                <option value="14:00 - 15:00">14:00 - 15:00</option>
+                <option value="15:00 - 16:00">15:00 - 16:00</option>
+                <option value="16:00 - 17:00">16:00 -17:00</option>
               </select>
               <h5 class="text-start mt-2">Service Name: </h5>
               <select v-model="payload.servName" type="text" class="form-control ">
@@ -68,11 +54,30 @@
               </select>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button @click.prevent="addBook()" type="button" class="btn btn-dark">Add Booking</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button @click.prevent="addBook()" type="button" class="btn btn-dark">Add Booking</button>
+            </div>
           </div>
+
+        </div>
+      </div>
+            <!-- Modal delete-->
+            <div class="modal fade" :id="'delete' + book.bookID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
+        v-for="book in booking" :key="book.bookID">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title  fs-5" id="delete">Cancel Booking</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5 class="text-start">Are you sure?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button @click.prevent="deleteBooking(book.bookID)" type="button" class="btn btn-dark">Cancel Booking</button>
+            </div>
           </div>
-       
         </div>
       </div>
     </div>
@@ -83,8 +88,7 @@
       <tr>
         <th> Book ID</th>
         <th> Book Day</th>
-        <th>Book Start</th>
-        <th>Book End</th>
+        <th>Book Time</th>
         <th>Serv Name</th>
         <th>Employee Name</th>
         <th> Action</th>
@@ -94,14 +98,11 @@
       <tr v-for="book in booking" :key="book.bookID">
         <th scope="row"> {{ book.bookID }}</th>
         <td> {{ book.bookDay }}</td>
-        <td> {{ book.bookStart }}</td>
-        <td> {{ book.bookEnd }}</td>
+        <td> {{ book.bookTime }}</td>
         <td>{{ book.servName }}</td>
         <td>{{ book.employeeFullname }}</td>
-        <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + book.bookID"> Edit</button>
-        </td>
         <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
-            Delete</button></td>
+            Cancel</button></td>
       </tr>
     </tbody>
   </table>
@@ -112,6 +113,8 @@
 
 <script>
 import Spinner from '@/components/Spinner.vue';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 export default {
 
   data() {
@@ -119,12 +122,11 @@ export default {
       CustomerName: null,
       payload:
       {
-        "bookID":null,
         "bookDay": null,
         "bookTime": null,
         "servName": null,
         "employeeFullname": null,
-        "user":null
+        "user": null
       }
 
     }
@@ -148,8 +150,9 @@ export default {
 
   },
   mounted() {
-    this.$store.dispatch("fetchBooking",  this.$route.params ),
-      this.$store.dispatch("fetchServices"),
+
+    this.$store.dispatch("fetchBooking", cookies.get('VerifiedUser').result.userID)
+    this.$store.dispatch("fetchServices"),
       this.$store.dispatch("fetchUsers"),
       this.$store.dispatch("fetchStaff")
   },
@@ -160,11 +163,7 @@ export default {
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)
-      
-    },
-    editBooking(bookID) {
-      const updateData = Object.assign({}, { bookID }, this.payload)
-      this.$store.dispatch('updateBooking', updateData)
+
     }
   }
 
