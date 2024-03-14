@@ -11,7 +11,8 @@ class Bookings {
         servName,
         employeeFullname,
         firstName,
-        bookID
+        bookID,
+        userID
         FROM Bookings
         
         `;
