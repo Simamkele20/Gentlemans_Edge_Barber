@@ -1,13 +1,4 @@
 <template>
-    <!-- <div class="Profile mx-auto" v-for="User in user" :key="User.userID">
-        <div class="text-center ">
-            <h1>{{ User.firstName }} {{ User.lastName }}</h1>
-            <h5>{{ User.userAge }}</h5>
-            <h5>{{ User.userGender }}</h5>
-            <h5>{{ User.emailAdd }}</h5>
-            <h5></h5>
-        </div>
-    </div> -->
     <div class="Login">
         <h1 class="text-white pt-3 pb-4">My Profile</h1>
         <div class="login-form mx-auto ">

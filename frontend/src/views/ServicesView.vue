@@ -33,7 +33,11 @@
         </Card>
       </div>
       <div class="row mx-auto" v-else>
-        <Spinner />
+        <div class="spinner d-none d-xxl-flex">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
       </div>
     </div>
 
@@ -43,7 +47,7 @@
 
 
 <script>
-import Spinner from '@/components/Spinner.vue';
+
 import Card from '../components/Card.vue';
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
@@ -69,7 +73,7 @@ export default {
 
   },
   components: {
-    Card, Spinner
+    Card
   },
   computed: {
     user(){
@@ -108,4 +112,6 @@ export default {
 </script>
 
 
-<style src="../assets/css/style.css"></style>
+<style src="../assets/css/style.css" >
+
+</style>

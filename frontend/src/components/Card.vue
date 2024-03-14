@@ -1,6 +1,6 @@
 <template>
-    <div class=" mx-auto mt-5 ">
-        <div class="card">
+    <div class=" mx-auto mt-5">
+        <div class="card bg-black">
             <slot name="cardHeader"> </slot>
         </div>
         <div class="card-body">
