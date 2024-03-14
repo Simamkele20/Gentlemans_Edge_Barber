@@ -17,7 +17,7 @@ class Staff {
   }
   fetchEmployee(req, res) {
     const qry = `
-    SELECT staffID,,employeeFullname,JobTittle,staffUrl,staffDescription
+    SELECT staffID,employeeFullname,JobTittle,staffUrl,staffDescription
     FROM Staff
         WHERE staffID = ${req.params.id}
         `;
