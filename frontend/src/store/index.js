@@ -389,7 +389,7 @@ export default createStore({
         context.dispatch("fetchBookings");
         sweet({
           title: "New Booking has been added",
-          text: msg.message,
+          text: msg,
           icon: "success",
           timer: 2000,
         });
@@ -468,7 +468,7 @@ export default createStore({
 
         context.dispatch("fetchBookings");
         sweet({
-          title: "Cancel Booking",
+          title: "Booking Cancelled",
           text: msg,
           icon: "success",
           timer: 2000,
@@ -476,7 +476,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when deleting a Booking.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });

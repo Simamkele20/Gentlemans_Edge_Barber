@@ -1,5 +1,5 @@
 <template>
-  <div class="container ">
+  <div class="container">
     <div class="mt-4">
       <nav class="navbar nav-pills nav-underline bg-black w-100 w-md-25 justify-content-center mx-auto" role="tablist">
         <ul class="d-block d-md-flex  mt-2  ">
@@ -17,11 +17,11 @@
       </nav>
     </div>
 
- 
+
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class="col">
         <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
-          class="form-control">
+          class="form-control w-50">
       </div>
       <div class="col ">
         <button class=" btn btn-dark"> Filter</button>
@@ -67,7 +67,7 @@
             <div class="modal-body">
               <h5 class="text-start">Service Name: </h5>
               <input v-model="payload.servName" type="text" :placeholder="service.servName" class="form-control">
-        
+
               <h5 class="text-start mt-2">Service URL: </h5>
               <input v-model="payload.servUrl" type="text mt-2" :placeholder="service.servUrl" class="form-control">
               <h5 class="text-start mt-2">Service Amount: </h5>
@@ -78,7 +78,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button @click.prevent="editServ(service.servID)" type="button" class="btn btn-dark">Update Product</button>
+              <button @click.prevent="editServ(service.servID)" type="button" class="btn btn-dark">Update
+                Product</button>
             </div>
           </div>
         </div>
@@ -97,14 +98,15 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button @click.prevent="deleteServ(service.servID)" type="button" class="btn btn-dark">Delete Product</button>
+              <button @click.prevent="deleteServ(service.servID)" type="button" class="btn btn-dark">Delete
+                Product</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <table class="AdiCont table mt-5 w-75 text-center mx-auto" v-if="services">
+  <table class="AdiCont table mt-5  text-center mx-auto" v-if="services">
     <thead>
       <tr>
         <th> Service ID</th>
@@ -122,7 +124,8 @@
         <td>{{ service.servName }} </td>
         <td>{{ service.servDescription }} </td>
         <td> R {{ service.servAmount }} </td>
-        <td><button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID"> Edit</button>
+        <td><button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID">
+            Edit</button>
         </td>
         <td><button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + service.servID">
             Delete</button></td>
@@ -136,6 +139,7 @@
 
 <script>
 import Spinner from '@/components/Spinner.vue';
+
 export default {
   name: "AdminView",
   data() {
@@ -186,9 +190,36 @@ export default {
       this.$store.dispatch('addNewService', this.payload)
     },
     editServ(servID) {
-      const updateData = Object.assign({}, {servID}, this.payload)
+      const updateData = Object.assign({}, { servID }, this.payload)
       this.$store.dispatch('updateService', updateData)
     }
   }
 }
 </script>
+
+
+<style>
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+.AdiCont {
+  animation: slideInRight 0.8s ease forwards;
+  opacity: 0;
+}
+
+
+.AdiCont.loaded {
+  animation-delay: 0.5s;
+  opacity: 1;
+}
+</style>

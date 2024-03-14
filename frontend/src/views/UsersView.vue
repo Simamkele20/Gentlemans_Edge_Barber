@@ -20,7 +20,7 @@
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class="col">
         <input v-model="searchInput" type="text" placeholder="Search User by firstName" @input="Search"
-          class="form-control">
+          class="form-control w-50">
       </div>
       <div class="col ">
         <button class=" btn btn-dark"> Filter</button>
@@ -42,19 +42,21 @@
               <h5 class="text-start mt-2">User LastName: </h5>
               <input v-model="payload.lastName" type="text mt-2" placeholder="Surname" class="form-control">
               <h5 class="text-start mt-2">User Gender: </h5>
-              <select v-model="payload.userGender"  type="text" class="form-control " id="exampleDropdownFormEmail1"  placeholder="Please Select your Gender" >
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
+              <select v-model="payload.userGender" type="text" class="form-control " id="exampleDropdownFormEmail1"
+                placeholder="Please Select your Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
               <h5 class="text-start mt-2">User Age: </h5>
               <input v-model="payload.userAge" type="number" placeholder="Age" class="form-control">
               <h5 class="text-start mt-2">User Email Address: </h5>
               <input v-model="payload.emailAdd" type="text" placeholder="Email Address" class="form-control">
               <h5 class="text-start mt-2">User Role: </h5>
-              <select v-model="payload.userRole"  type="text" class="form-control " id="exampleDropdownFormEmail1"  placeholder="Please Select your Role" >
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
+              <select v-model="payload.userRole" type="text" class="form-control " id="exampleDropdownFormEmail1"
+                placeholder="Please Select your Role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
               <h5 class="text-start mt-2">User Password: </h5>
               <input v-model="payload.userPwd" type="text" placeholder="Password" class="form-control">
             </div>
@@ -66,7 +68,8 @@
         </div>
       </div>
       <!-- Modal edit -->
-      <div class="modal fade" :id="'edit' + user.userID" tabindex="-1" aria-labelledby="edit" aria-hidden="true"   v-for="user in users" :key="user.userID">
+      <div class="modal fade" :id="'edit' + user.userID" tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+        v-for="user in users" :key="user.userID">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +94,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button  @click="editUser(user.userID)" type="button" class="btn btn-dark">Update User</button>
+              <button @click="editUser(user.userID)" type="button" class="btn btn-dark">Update User</button>
             </div>
           </div>
         </div>
@@ -140,7 +143,8 @@
         <td>{{ user.userGender }}</td>
         <td>{{ user.emailAdd }}</td>
         <td> {{ user.userRole }}</td>
-        <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID"> Edit</button></td>
+        <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID"> Edit</button>
+        </td>
 
         <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + user.userID">
             Delete</button></td>
@@ -151,7 +155,7 @@
     <Spinner />
   </div>
 </template>
-  
+
 <script>
 import Spinner from '@/components/Spinner.vue';
 export default {
@@ -177,7 +181,7 @@ export default {
   },
   computed: {
     users() {
-     return this.$store.state.users
+      return this.$store.state.users
     },
     filterUser() {
       return this.$store.state.users.filter(user =>
@@ -200,15 +204,15 @@ export default {
       this.$store.dispatch('register', this.payload)
     },
     editUser(userID) {
-      const updateData = Object.assign({}, {userID}, this.payload)
+      const updateData = Object.assign({}, { userID }, this.payload)
       this.$store.dispatch('updateUser', updateData)
     }
   }
 
 }
 </script>
-  
-  
+
+
 
 
 <style src="../assets/css/style.css"></style>
