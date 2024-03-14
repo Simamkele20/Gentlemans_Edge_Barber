@@ -236,7 +236,6 @@ export default createStore({
           });
         }
       } catch (e) {
-        console.log(e.message);
         sweet({
           title: "Error",
           text: "A service was not found.",
@@ -323,9 +322,9 @@ export default createStore({
     },
     async fetchEmployee(context, payload) {
       try {
-        let { result } = (await axios.get(`${RL}staff/${payload.id}`)).data;
+        let { result } = (await axios.get(`${URL}staff/${payload.id}`)).data;
         if (result) {
-          context.commit("setStaff", result);
+          context.commit("setEmployee", result);
         } else {
           sweet({
             title: "Retrieving a single employee",
@@ -335,10 +334,9 @@ export default createStore({
           });
         }
       } catch (e) {
-        console.log(e.message);
         sweet({
           title: "Error",
-          text: "A employee was not found.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });

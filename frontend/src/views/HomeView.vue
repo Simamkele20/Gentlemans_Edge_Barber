@@ -1,5 +1,5 @@
 <template>
-  <div class="Home pt-5">
+  <div class="Home ">
 
     <h2 class="text-white">Welcome To</h2>
     <h1 class="text-white">Gentleman's Edge Barber</h1>

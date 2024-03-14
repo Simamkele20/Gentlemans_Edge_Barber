@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid bg-black accordion-item text-center">
+    <div class="container-fluid pt-1 bg-black accordion-item text-center">
         <div class="row">
             <p class="footer1 lead text-white   "> Gentleman's Edge Barber &copy;
                 <span> {{ currYear }}</span>
@@ -20,4 +20,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.row{
+
+    padding-bottom: -20px;
+}
+</style>

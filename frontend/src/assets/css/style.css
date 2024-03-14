@@ -14,7 +14,13 @@
 
 
 /* Services COntent */
+.spinner {
+  position: absolute;
+  left: 50%;
+  bottom: 45%;
+}
 .servBtn {
+
     font-family: "Passero One", sans-serif;
     font-weight: 500;
     font-style: normal;
