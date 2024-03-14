@@ -3,10 +3,16 @@
 
 
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
-
-      <div class="col-2 mx-3">
-        <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+      <div class=" servBtn row text-end">
+        <div class="col">
+          <input v-model="searchInput" type="text" placeholder="Search Booking by Customer Name" @input="Search"
+            class="form-control w-50">
+        </div>
+        <div class="col-2 mx-3">
+          <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+        </div>
       </div>
+
       <!-- Modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -42,30 +48,49 @@
               <h5 class="text-start mt-2">Service Name: </h5>
               <select v-model="payload.servName" type="text" class="form-control ">
                 <option value=""></option>
-                <option :value=" service.servName " v-for="service in services" :key="service.servID"> {{
-                service.servName }}</option>
+                <option :value="service.servName" v-for="service in services" :key="service.servID"> {{
+            service.servName }}</option>
               </select>
               <h5 class="text-start mt-2">Employee FullName: </h5>
               <select v-model="payload.employeeFullname" type="text" class="form-control ">
                 <option value=""></option>
-                <option :value=" employee.employeeFullname " v-for="employee in staff" :key="employee.staffID"> {{
-                employee.employeeFullname }}
+                <option :value="employee.employeeFullname" v-for="employee in staff" :key="employee.staffID"> {{
+            employee.employeeFullname }}
                 </option>
               </select>
             </div>
             <h5 class="text-start mt-2">User FirstName: </h5>
             <select v-model="payload.firstName" type="text" class="form-control ">
               <option value=""></option>
-              <option :value=" user.firstName " v-for="user in users" :key="user.firstName"> {{ user.firstName }}
+              <option :value="user.firstName" v-for="user in users" :key="user.firstName"> {{ user.firstName }}
               </option>
             </select>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button @click="addBook()" type="button" class="btn btn-dark">Add Booking</button>
-          </div>  
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button @click="addBook()" type="button" class="btn btn-dark">Add Booking</button>
+            </div>
           </div>
 
-         
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal delete-->
+  <div class="modal fade" :id="'delete' + book.bookID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
+    v-for="book in bookings" :key="book.bookID">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title  fs-5" id="delete">Cancel Booking</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-start">Are you sure?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button @click.prevent="deleteBooking(book.bookID)" type="button" class="btn btn-dark">Cancel Booking</button>
         </div>
       </div>
     </div>
@@ -79,22 +104,21 @@
         <th>Book Time </th>
         <th>Serv Name</th>
         <th>Employee Name</th>
-        <th>user firstName</th>
+        <th>Customer Name</th>
         <th> Action</th>
       </tr>
     </thead>
     <tbody class="text-center mb-5">
-      <tr v-for="book in bookings" :key="book.bookID">
+      <tr v-for="book in displayedBookings" :key="book.bookID">
         <th scope="row"> {{ book.bookID }}</th>
         <td> {{ book.bookDay }}</td>
-        <td> {{ book.bookTime}} </td>
+        <td> {{ book.bookTime }} </td>
         <td>{{ book.servName }}</td>
         <td>{{ book.employeeFullname }}</td>
         <td>{{ book.firstName }}</td>
-        <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + book.bookID"> Edit</button>
-        </td>
+
         <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
-            Delete</button></td>
+            Cancel</button></td>
       </tr>
     </tbody>
   </table>
@@ -109,7 +133,7 @@ export default {
 
   data() {
     return {
-      CustomerName: null,
+      searchInput: null,
       payload:
       {
         "bookDay": null,
@@ -136,7 +160,18 @@ export default {
     },
     users() {
       return this.$store.state.users
-    }
+    },
+    displayedBookings() {
+      let items = [...this.bookings];
+      if (this.sortedItems) {
+        items.sort((a, b) => a.servAmount - b.servAmount);
+      } else if (this.searchInput) {
+        items = items.filter(booking =>
+          booking.firstName.toLowerCase().includes(this.searchInput.toLowerCase())
+        );
+      }
+      return items;
+    },
 
   },
   mounted() {
@@ -152,12 +187,12 @@ export default {
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)
-      
+
     },
-    editBooking(bookID) {
-      const updateData = Object.assign({}, { bookID }, this.payload)
-      this.$store.dispatch('updateBooking', updateData)
+    Search() {
+      'Search input:', this.searchInput
     }
+
   }
 
 }

@@ -1,11 +1,17 @@
 <template>
   <div class="container ">
+    <h2 class="text-center mt-3">My Bookings</h2>
 
 
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
-
-      <div class="col-2 mx-3">
-        <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+      <div class=" servBtn row text-end">
+        <div class="col">
+          <input v-model="searchInput" type="text" placeholder="Search Booking by Day" @input="Search"
+            class="form-control w-50">
+        </div>
+        <div class="col-5">
+          <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+        </div>
       </div>
       <!-- Modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,28 +47,28 @@
               </select>
               <h5 class="text-start mt-2">Service Name: </h5>
               <select v-model="payload.servName" type="text" class="form-control ">
-                <option value=""></option>
-                <option :value=" service.servName " v-for="service in services" :key="service.servID"> {{
-                service.servName }}</option>
+                <option :value="service.servName" v-for="service in services" :key="service"> {{
+            service.servName }}</option>
               </select>
               <h5 class="text-start mt-2">Employee FullName: </h5>
               <select v-model="payload.employeeFullname" type="text" class="form-control ">
                 <option value=""></option>
-                <option :value=" employee.employeeFullname " v-for="employee in staff" :key="employee.staffID"> {{
-                employee.employeeFullname }}
+                <option :value="employee.employeeFullname" v-for="employee in staff" :key="employee.staffID"> {{
+            employee.employeeFullname }}
                 </option>
               </select>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button @click.prevent="addBook()" type="button" class="btn btn-dark">Add Booking</button>
+              <button @click="addBook()" type="button" class="btn btn-dark">Add Booking</button>
             </div>
           </div>
 
+
         </div>
       </div>
-            <!-- Modal delete-->
-            <div class="modal fade" :id="'delete' + book.bookID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
+      <!-- Modal delete-->
+      <div class="modal fade" :id="'delete' + book.bookID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
         v-for="book in booking" :key="book.bookID">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -75,7 +81,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button @click.prevent="deleteBooking(book.bookID)" type="button" class="btn btn-dark">Cancel Booking</button>
+              <button @click.prevent="deleteBooking(book.bookID)" type="button" class="btn btn-dark">Cancel
+                Booking</button>
             </div>
           </div>
         </div>
@@ -95,7 +102,7 @@
       </tr>
     </thead>
     <tbody class="text-center mb-5">
-      <tr v-for="book in booking" :key="book.bookID">
+      <tr v-for="book in displayedBookings" :key="book.bookID">
         <th scope="row"> {{ book.bookID }}</th>
         <td> {{ book.bookDay }}</td>
         <td> {{ book.bookTime }}</td>
@@ -119,14 +126,15 @@ export default {
 
   data() {
     return {
-      CustomerName: null,
+      searchInput: "",
       payload:
       {
         "bookDay": null,
-        "bookTime": null,
-        "servName": null,
+        "bookStart": null,
+        "bookEnd": null,
         "employeeFullname": null,
-        "user": null
+        "firstName": cookies.get('VerifiedUser').result.firstName,
+        "userID": cookies.get('VerifiedUser').result.userID
       }
 
     }
@@ -146,7 +154,18 @@ export default {
     },
     users() {
       return this.$store.state.users
-    }
+    },
+    displayedBookings() {
+      let items = [...this.booking];
+      if (this.sortedItems) {
+        items.sort((a, b) => a.servAmount - b.servAmount);
+      } else if (this.searchInput) {
+        items = items.filter(booking =>
+          booking.bookDay.toLowerCase().includes(this.searchInput.toLowerCase())
+        );
+      }
+      return items;
+    },
 
   },
   mounted() {
@@ -164,6 +183,9 @@ export default {
     addBook() {
       this.$store.dispatch('addBooking', this.payload)
 
+    },
+    Search() {
+      'Search input:', this.searchInput
     }
   }
 

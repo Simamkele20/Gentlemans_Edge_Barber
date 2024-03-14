@@ -6,7 +6,7 @@
             <div class="text">
 
                 <div v-for="User in user" :key="User.userID">
-                    <h1 >{{ User.firstName }} {{ User.lastName }}</h1>
+                    <h1>{{ User.firstName }} {{ User.lastName }}</h1>
                     <h5>{{ User.userAge }}</h5>
                     <h5>{{ User.userGender }}</h5>
                     <h5>{{ User.emailAdd }}</h5>
@@ -14,7 +14,7 @@
 
 
             </div>
-          
+
         </div>
         <router-link to="/logout" class="btn btn-dark text-center mt-5">Log out</router-link>
     </div>

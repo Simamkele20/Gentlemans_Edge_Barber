@@ -21,7 +21,7 @@
         <div class=" prodBtn d-block d-md-flex row text-end mt-4">
             <div class="col">
                 <input v-model="searchInput" type="text" placeholder="Search employee by name" @input="Search"
-                    class="form-control">
+                    class="form-control w-50">
             </div>
             <div class="col ">
                 <button class=" btn btn-dark"> Filter</button>
@@ -61,8 +61,8 @@
                 </div>
             </div>
             <!-- Modal edit -->
-            <div class="modal fade" :id="'edit' + employee.staffID" tabindex="-1" aria-labelledby="edit" aria-hidden="true"
-                v-for="employee in Staff" :key="employee.staffID">
+            <div class="modal fade" :id="'edit' + employee.staffID" tabindex="-1" aria-labelledby="edit"
+                aria-hidden="true" v-for="employee in Staff" :key="employee.staffID">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -71,8 +71,8 @@
                         </div>
                         <div class="modal-body">
                             <h5 class="text-start">Employee Fullname : </h5>
-                            <input v-model="payload.employeeFullname" type="text" :placeholder="employee.employeeFullname"
-                                class="form-control">
+                            <input v-model="payload.employeeFullname" type="text"
+                                :placeholder="employee.employeeFullname" class="form-control">
                             <h5 class="text-start mt-2">Job Tittle: </h5>
                             <input v-model="payload.JobTittle" type="text mt-2" :placeholder="employee.JobTittle"
                                 class="form-control">
@@ -80,12 +80,13 @@
                             <input v-model="payload.staffUrl" type="text" class="form-control "
                                 id="exampleDropdownFormEmail1" :placeholder="employee.staffUrl">
                             <h5 class="text-start mt-2">Employee Description: </h5>
-                            <input v-model="payload.staffDescription" type="text" :placeholder="employee.staffDescription"
-                                class="form-control">
+                            <input v-model="payload.staffDescription" type="text"
+                                :placeholder="employee.staffDescription" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button @click.prevent="editStaff(employee.staffID)" type="button" class="btn btn-dark">Update
+                            <button @click.prevent="editStaff(employee.staffID)" type="button"
+                                class="btn btn-dark">Update
                                 Staff</button>
                         </div>
                     </div>

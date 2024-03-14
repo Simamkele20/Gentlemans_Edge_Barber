@@ -30,10 +30,10 @@
           <input v-model="payload.emailAdd" type="email" placeholder="Enter Your Email">
         </div>
         <div class="field">
-          <select v-model="payload.userRole" type="text"  required>
+          <select v-model="payload.userRole" type="text" required>
             <option value="" disabled selected hidden>Choose a Gender</option>
             <option value="user">User</option>
-  
+
           </select>
         </div>
         <div class="field">
