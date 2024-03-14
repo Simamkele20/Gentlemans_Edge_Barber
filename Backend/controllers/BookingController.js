@@ -17,7 +17,7 @@ bookingRouter.get("/", (req, res) => {
   }
 });
 // fetch booking
-  bookingRouter.get("/users/:id", (req, res) => {
+  bookingRouter.get("/users/:id/booking", (req, res) => {
     try {
         bookings.fetchBooking(req, res);
     } catch (e) {
