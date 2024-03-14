@@ -62,6 +62,7 @@ async addBooking(req, res) {
     servName: data.servName,
     employeeFullname: data.employeeFullname,
     firstName: data.firstName,
+    userID: data.userID,
   };
 
   // Check if the booking details already exist
