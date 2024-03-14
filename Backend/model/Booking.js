@@ -28,17 +28,18 @@ class Bookings {
   fetchBooking(req, res) {
     const qry = `
      SELECT
-    bookID,
-    bookDay,
-    bookTime,
-    servName,
-    employeeFullname
+    b.bookID,
+   b.bookDay,
+    b.bookTime,
+    b.servName,
+    b.employeeFullname
+    u.firstName
 FROM
-    Bookings 
+    Bookings b
 INNER JOIN
-    Users ON Bookings.userID = Users.userID
+    Users u ON b.userID = u.userID
 WHERE
-     userID = ${req.params.id};
+     u.userID = ${req.params.id};
 
 
           `;
