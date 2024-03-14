@@ -59,11 +59,14 @@
     employee.employeeFullname }}
               </option>
             </select>
+            <h5 class="text-start mt-2">User ID: </h5>
+            <select v-model="payload.userID" type="text" class="form-control ">
+            <option :value="payload.userID">{{ payload.userID }}</option>
+            </select>
           </div>
           <h5 class="text-start mt-2">User FirstName: </h5>
           <select v-model="payload.firstName" type="text" class="form-control ">
-            <option value=""></option>
-            <option :value="user.firstName" v-for="user in users" :key="user.firstName"> {{ user.firstName }}
+            <option :value="payload.firstName" > {{ payload.firstName }}
             </option>
           </select>
           <div class="modal-footer">
@@ -88,6 +91,8 @@
 
 <script>
 import Spinner from '@/components/Spinner.vue';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 export default {
   data() {
     return {
@@ -97,7 +102,9 @@ export default {
         "bookStart": null,
         "bookEnd": null,
         "servName": null,
-        "employeeFullname": null
+        "employeeFullname": null,
+        "firstName": cookies.get('VerifiedUser').result.firstName,
+        "userID": cookies.get('VerifiedUser').result.userID
       }
 
     }

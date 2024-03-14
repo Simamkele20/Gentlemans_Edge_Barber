@@ -389,7 +389,7 @@ export default createStore({
         context.dispatch("fetchBookings");
         sweet({
           title: "New Booking has been added",
-          text: msg,
+          text: msg.message,
           icon: "success",
           timer: 2000,
         });
@@ -417,13 +417,13 @@ export default createStore({
         });
       }
     },
-    async fetchBooking(context, payload) {
+    async fetchBooking(context, id) {
       try {
-        let { result } = (
-          await axios.get(`${URL}/booking/users/${payload?.id}/booking`)
+        let { results } = (
+          await axios.get(`${URL}booking/users/${id}`)
         ).data;
-        if (result) {
-          context.commit("setBooking", result);
+        if (results) {
+          context.commit("setBooking", results);
         } else {
           sweet({
             title: "Retrieving a single booking",
@@ -468,7 +468,7 @@ export default createStore({
 
         context.dispatch("fetchBookings");
         sweet({
-          title: "Delete Booking",
+          title: "Cancel Booking",
           text: msg,
           icon: "success",
           timer: 2000,
