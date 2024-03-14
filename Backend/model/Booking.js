@@ -32,7 +32,7 @@ class Bookings {
    b.bookDay,
     b.bookTime,
     b.servName,
-    b.employeeFullname
+    b.employeeFullname,
     u.firstName
 FROM
     Bookings b
@@ -43,11 +43,11 @@ WHERE
 
 
           `;
-    db.query(qry, (err, result) => {
+    db.query(qry, (err, results) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        result: result[0],
+        results,
       });
     });
   }
