@@ -26,9 +26,7 @@
                     <li class="nav-item" v-show="isUser">
                         <router-link to="/booking" class="nav-link">Booking </router-link>
                     </li>
-                    <li class="nav-item" v-show="isAdmin">
-                        <router-link to="/bookings" class="nav-link">Bookings</router-link>
-                    </li>
+               
 
                     <li class="nav-item" v-show="isAdmin">
                         <router-link to="/admin" class="nav-link">Admin </router-link>

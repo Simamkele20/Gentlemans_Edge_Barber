@@ -5,23 +5,19 @@
 
             <div class="text">
 
-                <div v-for="User in user" :key="User.userID">
-                    <h1>{{ User.firstName }} {{ User.lastName }}</h1>
-                    <h5>{{ User.userAge }}</h5>
-                    <h5>{{ User.userGender }}</h5>
-                    <h5>{{ User.emailAdd }}</h5>
+                <div v-for="user in user" :key="user.userID">
+                    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+                    <h5>{{ user.userAge }}</h5>
+                    <h5>{{ user.userGender }}</h5>
+                    <h5>{{ user.emailAdd }}</h5>
                 </div>
-
-
+                
+                
             </div>
 
         </div>
         <router-link to="/logout" class="btn btn-dark text-center mt-5">Log out</router-link>
     </div>
-
-
-
-
 
 
 </template>
@@ -42,7 +38,6 @@ export default {
                 "lastName": null,
                 "userAge": null,
                 "userGender": null,
-
             }
         }
     },

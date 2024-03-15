@@ -12,6 +12,9 @@
           <li class="nav-item mx-4">
             <router-link to="/staff" class="nav-link link-light">Staff</router-link>
           </li>
+          <li class="nav-item mx-4">
+            <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
+          </li>
         </ul>
 
       </nav>
@@ -82,13 +85,21 @@
               <h5 class="text-start mt-2">User LastName: </h5>
               <input v-model="payload.lastName" type="text" :placeholder="user.lastName" class="form-control">
               <h5 class="text-start mt-2">User Gender: </h5>
-              <input v-model="payload.userGender" type="text" :placeholder="user.userGender" class="form-control">
+              <select v-model="payload.userGender" type="text" class="form-control " id="exampleDropdownFormEmail1"
+                placeholder="Please Select your Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
               <h5 class="text-start mt-2">User Age: </h5>
               <input v-model="payload.userAge" type="text" :placeholder="user.userAge" class="form-control">
               <h5 class="text-start mt-2">User Email Address: </h5>
               <input v-model="payload.emailAdd" type="text" :placeholder="user.emailAdd" class="form-control">
               <h5 class="text-start mt-2">User Role: </h5>
-              <input v-model="payload.userRole" type="text" :placeholder="user.userRole" class="form-control">
+              <select v-model="payload.userRole" type="text" class="form-control " id="exampleDropdownFormEmail1"
+                placeholder="Please Select your Role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
               <h5 class="text-start mt-2">User Password: </h5>
               <input v-model="payload.userPwd" type="text" placeholder="Enter your password" class="form-control">
             </div>
@@ -120,39 +131,46 @@
       </div>
     </div>
   </div>
-  <table class="AdiCont table w-75 mt-5 text-center mx-auto" v-if="users">
-    <thead>
-      <tr>
-        <th> ID</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Email Address</th>
-        <th>Role</th>
-        <th> Action</th>
-      </tr>
-    </thead>
-    <tbody class="text-center mb-5">
-      <tr v-for="user in filterUser" :key="user.userID">
-        <th scope="row"> {{ user.userID }}</th>
-        <td> {{ user.firstName }}</td>
-        <td> {{ user.lastName }}</td>
-        <td>{{ user.userAge }}</td>
-        <td>{{ user.userGender }}</td>
-        <td>{{ user.emailAdd }}</td>
-        <td> {{ user.userRole }}</td>
-        <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID"> Edit</button>
-        </td>
 
-        <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + user.userID">
-            Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row mx-auto" v-else>
-    <Spinner />
-  </div>
+  <div class="text-center text-black mb-3 mt-3" v-if="!users && !loading">
+  <Spinner />
+</div>
+<div class="text-center text-black mb-3 mt-3" v-else-if="filterUser.length === 0">
+  <h3>No User found.</h3>
+</div>
+
+<table class="AdiCont table w-75 mt-5 text-center mx-auto" v-else>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Email Address</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody class="text-center mb-5">
+    <tr v-for="user in filterUser" :key="user.userID">
+      <th scope="row">{{ user.userID }}</th>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.userAge }}</td>
+      <td>{{ user.userGender }}</td>
+      <td>{{ user.emailAdd }}</td>
+      <td>{{ user.userRole }}</td>
+      <td>
+        <button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + user.userID">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 </template>
 
 <script>
@@ -183,11 +201,15 @@ export default {
       return this.$store.state.users
     },
     filterUser() {
-      return this.$store.state.users.filter(user =>
-        user.firstName?.toLowerCase().includes(this.searchInput.toLowerCase())
-      );
-
-    }
+  const users = this.$store.state.users;
+  if (!users) {
+    return []; 
+  }
+  
+  return users.filter(user =>
+    user.firstName?.toLowerCase().includes(this.searchInput.toLowerCase())
+  );
+}
   },
   mounted() {
     this.$store.dispatch("fetchUsers")
