@@ -13,6 +13,9 @@
                     <li class="nav-item mx-4">
                         <a class="nav-link link-light">Staff</a>
                     </li>
+                    <li class="nav-item mx-4">
+                        <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
+                    </li>
                 </ul>
 
             </nav>
@@ -110,7 +113,14 @@
             </div>
         </div>
     </div>
-    <table class="AdiCont w-75 table mt-5 text-center mx-auto" v-if="Staff">
+    <div class="text-center text-black mb-3 mt-3" v-if="!Staff && !loading">
+  <Spinner />
+</div>
+<div class="text-center text-black mb-3 mt-3" v-else-if="filterStaff.length === 0">
+  <h3>No Employee found.</h3>
+</div>
+
+    <table class="AdiCont w-75 table mt-5 text-center mx-auto" v-else>
         <thead>
             <tr>
                 <th>ID</th>
@@ -137,9 +147,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="row mx-auto" v-else>
-        <Spinner />
-    </div>
+
 </template>
 
 <script>
@@ -168,11 +176,16 @@ export default {
             return this.$store.state.staff
         },
         filterStaff() {
-            return this.$store.state.staff.filter(employee =>
-                employee.employeeFullname?.toLowerCase().includes(this.searchInput.toLowerCase())
-            );
+  const staff = this.$store.state.staff;
+  if (!staff) {
+    return []; 
+  }
+  
+  return staff.filter(employee =>
+    employee.employeeFullname?.toLowerCase().includes(this.searchInput.toLowerCase())
+  );
+}
 
-        }
     },
     mounted() {
         this.$store.dispatch("fetchStaff")

@@ -14,7 +14,7 @@
           <img :src="employee.staffUrl" class="card-img-top mx-auto mt-4  w-75" alt="Pro">
         </template>
         <template #cardBody>
-          <h3 class="card-text text-white mt-3 ">
+          <h3 class="hea card-text text-white mt-3 ">
             {{ employee.employeeFullname }}
           </h3>
           <router-link :to="{ name: 'employee', params: { id: employee.staffID } }"><button

@@ -12,6 +12,9 @@
           <li class="nav-item mx-4">
             <router-link to="/staff" class="nav-link link-light">Staff</router-link>
           </li>
+          <li class="nav-item mx-4">
+            <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
+          </li>
         </ul>
 
       </nav>
@@ -106,7 +109,14 @@
       </div>
     </div>
   </div>
-  <table class="AdiCont table mt-5 w-75 text-center mx-auto" v-if="services">
+  
+  <div class="text-center text-black mb-3 mt-3" v-if="!services && !loading">
+  <Spinner />
+</div>
+<div class="text-center text-black mb-3 mt-3" v-else-if="filterServ.length === 0">
+  <h3>No Service found.</h3>
+</div>
+  <table class="AdiCont table mt-5 w-75 text-center mx-auto" v-else>
     <thead>
       <tr>
         <th>ID</th>
@@ -132,9 +142,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="row mx-auto" v-else>
-    <Spinner />
-  </div>
+
 </template>
 
 <script>
@@ -164,10 +172,15 @@ export default {
       return this.$store.state.services
     },
     filterServ() {
-      return this.$store.state.services.filter(service =>
-        service.servName?.toLowerCase().includes(this.searchInput.toLowerCase())
-      );
-    }
+  const services = this.$store.state.services;
+  if (!services) {
+    return []; 
+  }
+  return services.filter(service =>
+    service.servName?.toLowerCase().includes(this.searchInput.toLowerCase())
+  );
+}
+
   },
   mounted() {
     this.$store.dispatch('fetchServices');
