@@ -3,20 +3,7 @@ import { hash, compare } from "bcrypt";
 import { createToken } from "../middleware/AuthenticateUser.js";
 
 class Users {
-  fetchUsers(req, res) {
-    const qry = `
-        SELECT userID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
-        FROM Users
-        `;
 
-    db.query(qry, (err, results) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        results,
-      });
-    });
-  }
   fetchUser(req, res) {
     const qry = `
         SELECT userID,firstName,lastName,
@@ -25,14 +12,19 @@ class Users {
         WHERE userID = ${req.params.id}
         `;
 
-    db.query(qry, (err, result) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        result,
-      });
+ db.query(qry, (err, results) => {
+  if (err) {
+    console.error("Error fetching users:", err);
+    return res.status(500).json({
+      status: 500,
+      msg: "An error occurred while fetching users. Please try again later.",
     });
   }
+  res.json({
+    status: res.statusCode,
+    results,
+  });
+});
 
   // create a user
   async createUser(req, res) {
