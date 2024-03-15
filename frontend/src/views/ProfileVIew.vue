@@ -10,9 +10,8 @@
                     <h5>{{ user.userAge }}</h5>
                     <h5>{{ user.userGender }}</h5>
                     <h5>{{ user.emailAdd }}</h5>
+                  
                 </div>
-                
-                
             </div>
 
         </div>
@@ -72,14 +71,9 @@ export default {
 
 </script>
 
-<style>
+<style style="../assets/css/style.css">
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
 
 .Login {
 

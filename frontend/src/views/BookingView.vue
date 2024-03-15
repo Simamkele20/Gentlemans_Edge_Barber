@@ -89,8 +89,13 @@
       </div>
     </div>
   </div>
-
-  <table class="AdiCont table mt-5 text-center mx-auto" v-if="booking">
+  <div class="text-center pb-3 pt-3" v-if="!booking && !loading">
+  <Spinner /> 
+</div>
+<div class="text-center text-black mb-3 mt-3" v-else-if="displayedBookings.length === 0">
+  <h3 class="pb-5">No Booking found.</h3>
+</div>
+  <table class="AdiCont table mt-5 text-center mx-auto" v-else>
     <thead>
       <tr>
         <th> Book ID</th>
@@ -113,9 +118,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="row mx-auto" v-else>
-    <Spinner />
-  </div>
+
 </template>
 
 <script>
