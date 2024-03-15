@@ -100,9 +100,14 @@
         </div>
       </div>
     </div>
-
-    <div class="ServCar col pb-5">
-      <div class="row d-grid d-md-flex" v-if="services">
+    <div class="text-center pb-3 pt-3" v-if="!services && !loading">
+  <Spinner /> 
+</div>
+<div class="text-center text-white mb-3 mt-3" v-else-if="displayedServices.length === 0">
+  <h3 class="pb-5">No Service found.</h3>
+</div>
+    <div class="ServCar col pb-5 row d-grid d-md-flex"  v-else>
+      
         <Card
           v-for="service in displayedServices"
           :key="service.servID"
@@ -141,19 +146,14 @@
           </template>
         </Card>
       </div>
-      <div class="row mx-auto" v-else>
-        <div class="spinner d-none d-xxl-flex">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
+
     </div>
-  </div>
+  
 </template>
 
 <script>
 import Card from "../components/Card.vue";
+import Spinner from '@/components/Spinner.vue';
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 
@@ -195,7 +195,7 @@ export default {
     };
   },
   components: {
-    Card,
+    Card,  Spinner
   },
   computed: {
     user() {
