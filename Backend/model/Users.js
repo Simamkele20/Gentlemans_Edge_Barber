@@ -3,7 +3,24 @@ import { hash, compare } from "bcrypt";
 import { createToken } from "../middleware/AuthenticateUser.js";
 
 class Users {
+  
+ fetchUsers(req, res) {
+    const qry = `
+        SELECT userID,firstName,lastName,userAge,userGender,emailAdd,userPwd,userRole
+        FROM Users
+        `;
 
+    db.query(qry, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+
+
+  
   fetchUser(req, res) {
     const qry = `
         SELECT userID,firstName,lastName,
