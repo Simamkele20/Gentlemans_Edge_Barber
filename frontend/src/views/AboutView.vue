@@ -1,5 +1,5 @@
 <template>
-  <div class="about text-center bg-black text-white">
+  <div class="about text-center bg-black text-white pb-5">
     <h1 class="hea">About us</h1>
     <h3 class="para w-75 mx-auto">Welcome to Gentleman`s Edge Barber , your go-to destination for exceptional haircuts
       in the heart of Khayelitsha! Established in 2020, we take pride in bringing contemporary and expert grooming
@@ -7,11 +7,11 @@
       for style, community, and top-notch hair care. Our skilled barbers are dedicated to delivering precision haircuts
       that suit your unique style and personality.</h3>
 
-    <h1 class="hea mt-3 pb-5">Meet Our Staff</h1>
+    <h1 class="hea mt-5 pb-5">Meet Our Staff</h1>
     <div class=" row d-grid d-md-flex" v-if="staff">
       <Card v-for="employee in staff" :key="employee.staffID" class=" text-center" id="cardPro">
         <template #cardHeader>
-          <img :src="employee.staffUrl" class="card-img-top mx-auto mt-4  rounded-bottom-circle w-75" alt="Pro">
+          <img :src="employee.staffUrl" class="card-img-top mx-auto mt-4  w-75" alt="Pro">
         </template>
         <template #cardBody>
           <h3 class="card-text text-white mt-3 ">
