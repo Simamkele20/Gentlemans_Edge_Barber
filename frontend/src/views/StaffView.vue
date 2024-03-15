@@ -26,8 +26,10 @@
                 <input v-model="searchInput" type="text" placeholder="Search employee by name" @input="Search"
                     class="form-control w-50">
             </div>
+
             <div class="col-2 mx-3">
-                <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Employee</button>
+                <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+                    Employee</button>
             </div>
             <!-- Modal-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -114,11 +116,11 @@
         </div>
     </div>
     <div class="text-center text-black mb-3 mt-3" v-if="!Staff && !loading">
-  <Spinner />
-</div>
-<div class="text-center text-black mb-3 mt-3" v-else-if="filterStaff.length === 0">
-  <h3>No Employee found.</h3>
-</div>
+        <Spinner />
+    </div>
+    <div class="text-center text-black mb-3 mt-3" v-else-if="filterStaff.length === 0">
+        <h3>No Employee found.</h3>
+    </div>
 
     <table class="AdiCont w-75 table mt-5 text-center mx-auto" v-else>
         <thead>
@@ -176,17 +178,16 @@ export default {
             return this.$store.state.staff
         },
         filterStaff() {
-  const staff = this.$store.state.staff;
-  if (!staff) {
-    return []; 
-  }
-  
-  return staff.filter(employee =>
-    employee.employeeFullname?.toLowerCase().includes(this.searchInput.toLowerCase())
-  );
-}
+            const staff = this.$store.state.staff;
+            if (!staff) {
+                return [];
+            }
 
-    },
+            return staff.filter(employee =>
+                employee.employeeFullname?.toLowerCase().includes(this.searchInput.toLowerCase())
+            );
+        }
+     },
     mounted() {
         this.$store.dispatch("fetchStaff")
     },

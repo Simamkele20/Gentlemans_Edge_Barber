@@ -26,7 +26,11 @@
           class="form-control w-50">
       </div>
       <div class="col ">
-        <button class=" btn btn-dark"> Filter</button>
+     <select v-model="selectedRole" class="btn form-class bg-dark text-white ">
+  <option value="All">Filter by UserRole</option>
+  <option value="user">User</option>
+  <option value="admin">Admin</option>
+</select>
       </div>
       <div class="col-2 mx-3">
         <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a User</button>
@@ -179,6 +183,7 @@ export default {
   name: "UsersView",
   data() {
     return {
+      selectedRole: 'All',
       searchInput: '',
       payload:
       {
@@ -201,15 +206,18 @@ export default {
       return this.$store.state.users
     },
     filterUser() {
-  const users = this.$store.state.users;
-  if (!users) {
-    return []; 
-  }
+      const users = this.$store.state.users;
+      if (!users) {
+        return []; 
+      }
+      
+      // Filter users based on search input and selected role
+      return users.filter(user =>
+        user.firstName?.toLowerCase().includes(this.searchInput.toLowerCase()) &&
+        (this.selectedRole === 'All' || user.userRole === this.selectedRole)
+      );
+    }
   
-  return users.filter(user =>
-    user.firstName?.toLowerCase().includes(this.searchInput.toLowerCase())
-  );
-}
   },
   mounted() {
     this.$store.dispatch("fetchUsers")
