@@ -26,6 +26,7 @@
         <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
           class="form-control w-50">
       </div>
+
       <div class="col-2  mx-3">
         <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#AddServ"> Add a Service</button>
       </div>
@@ -208,28 +209,6 @@ export default {
 </script>
 
 
-<style>
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+<style src="../assets/css/style.css">
 
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-
-.AdiCont {
-  animation: slideInRight 0.8s ease forwards;
-  opacity: 0;
-}
-
-
-.AdiCont.loaded {
-  animation-delay: 0.5s;
-  opacity: 1;
-}
 </style>
