@@ -5,7 +5,7 @@ import { verifyToken } from "../middleware/AuthenticateUser.js";
 
 const userRouter = express.Router();
 //fetch users
-userRouter.get("/",veryifyToken  (req, res) => {
+userRouter.get("/",verifyToken  (req, res) => {
   try {
     users.fetchUsers(req, res);
   } catch (e) {
@@ -16,7 +16,7 @@ userRouter.get("/",veryifyToken  (req, res) => {
   }
 });
 //fetch user
-userRouter.get("/:id", veryifyToken  (req, res) => {
+userRouter.get("/:id", verifyToken  (req, res) => {
   try {
     users.fetchUser(req, res);
   } catch (e) {
