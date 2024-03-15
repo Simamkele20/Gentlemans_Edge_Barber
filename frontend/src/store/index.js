@@ -299,7 +299,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when adding employee.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });

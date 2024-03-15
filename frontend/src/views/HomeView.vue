@@ -307,9 +307,8 @@ export default {
   font-family: "Black Ops One", system-ui;
   font-weight: 400;
   font-style: normal;
-  position: relative;
-  padding-bottom: -10px;
-  margin-bottom: -50px;
+  padding-bottom: 13px;
+  margin-bottom: -20px;
   font-size: 1px;
   min-height: 100%;
   background: rgb(0, 0, 0);
@@ -323,7 +322,7 @@ export default {
   z-index: 1;
   position: relative;
   width: 490px;
-  height: 420px;
+  height: 400px;
   margin: 50px auto;
 
   &:before,

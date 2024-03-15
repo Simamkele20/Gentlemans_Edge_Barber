@@ -23,12 +23,8 @@
                 <input v-model="searchInput" type="text" placeholder="Search employee by name" @input="Search"
                     class="form-control w-50">
             </div>
-            <div class="col ">
-                <button class=" btn btn-dark"> Filter</button>
-            </div>
             <div class="col-2 mx-3">
-                <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a
-                    Staff</button>
+                <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Employee</button>
             </div>
             <!-- Modal-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -55,7 +51,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button @click="addStaff()" type="button" class="btn btn-dark">Add Staff</button>
+                            <button @click.prevent="addStaff()" type="button" class="btn btn-dark">Add Employee</button>
                         </div>
                     </div>
                 </div>
@@ -114,23 +110,23 @@
             </div>
         </div>
     </div>
-    <table class="AdiCont table mt-5 text-center mx-auto" v-if="Staff">
+    <table class="AdiCont w-75 table mt-5 text-center mx-auto" v-if="Staff">
         <thead>
             <tr>
-                <th> Staff ID</th>
-                <th>EmployeeFullname</th>
+                <th>ID</th>
+                <th>Fullname</th>
                 <th>JobTittle</th>
-                <th>Employee Img</th>
-                <th>Employee Description</th>
+                <th>Img</th>
+                <th>Description</th>
                 <th> Action</th>
             </tr>
         </thead>
         <tbody class="text-center mb-5">
             <tr v-for="employee in filterStaff" :key="employee.staffID">
                 <th scope="row"> {{ employee.staffID }}</th>
-                <td> {{ employee.employeeFullname }}</td>
+                <td class="w-25"> {{ employee.employeeFullname }}</td>
                 <td> {{ employee.JobTittle }}</td>
-                <td><img :src="employee.staffUrl" class="w-50"></td>
+                <td><img :src="employee.staffUrl" class="w-75"></td>
                 <td>{{ employee.staffDescription }}</td>
                 <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + employee.staffID">
                         Edit</button></td>

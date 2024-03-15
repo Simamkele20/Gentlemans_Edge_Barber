@@ -1,6 +1,6 @@
-<template>
-  <div class="container mt-3">
-    <h2 class="ServHead text-center mb-4">Our Services</h2>
+<template >
+  <div class=" pt-3 bg-black " >
+    <h2 class="ServHead text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
     <div class="servBtn row text-end">
       <div class="col">
@@ -101,7 +101,7 @@
       </div>
     </div>
 
-    <div class="ServCar col mb-5">
+    <div class="ServCar col pb-5">
       <div class="row d-grid d-md-flex" v-if="services">
         <Card
           v-for="service in displayedServices"
@@ -117,10 +117,10 @@
             />
           </template>
           <template #cardBody>
-            <h4 class="card-text text-dark mt-3">
+            <h4 class="card-text text-white  mt-3">
               {{ service.servName }}
             </h4>
-            <h5 class="card-text text-dark">R{{ service.servAmount }}</h5>
+            <h5 class="card-text  text-white">R{{ service.servAmount }}</h5>
 
             <div class="">
               <button
@@ -133,7 +133,7 @@
               </button>
               <router-link
                 :to="{ name: 'service', params: { id: service.servID } }"
-                ><button class="btn bg-black text-white" v-show="user">
+                ><button class="btn bg-dark text-white" v-show="user">
                   View More
                 </button>
               </router-link>

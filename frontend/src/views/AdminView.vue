@@ -106,14 +106,14 @@
       </div>
     </div>
   </div>
-  <table class="AdiCont table mt-5  text-center mx-auto" v-if="services">
+  <table class="AdiCont table mt-5 w-75 text-center mx-auto" v-if="services">
     <thead>
       <tr>
-        <th> Service ID</th>
-        <th> Service Img</th>
-        <th>Service Name</th>
-        <th>Service Description</th>
-        <th>Service AMount</th>
+        <th>ID</th>
+        <th> Img</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Amount</th>
         <th> Action</th>
       </tr>
     </thead>
@@ -122,9 +122,9 @@
         <th scope="row"> {{ service.servID }}</th>
         <td><img :src="service.servUrl" class="w-25"></td>
         <td>{{ service.servName }} </td>
-        <td>{{ service.servDescription }} </td>
-        <td> R {{ service.servAmount }} </td>
-        <td><button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID">
+        <td class="w-25">{{ service.servDescription }} </td>
+        <td class="w-25"> R {{ service.servAmount }} </td>
+        <td><button class="btn btn-dark " data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID">
             Edit</button>
         </td>
         <td><button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + service.servID">

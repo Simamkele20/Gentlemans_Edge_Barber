@@ -120,16 +120,16 @@
       </div>
     </div>
   </div>
-  <table class="AdiCont table mt-5 text-center mx-auto" v-if="users">
+  <table class="AdiCont table w-75 mt-5 text-center mx-auto" v-if="users">
     <thead>
       <tr>
-        <th> User ID</th>
-        <th>User Name</th>
-        <th>User Last</th>
-        <th>User Age</th>
+        <th> ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
         <th>Gender</th>
         <th>Email Address</th>
-        <th>User Role</th>
+        <th>Role</th>
         <th> Action</th>
       </tr>
     </thead>
@@ -137,8 +137,7 @@
       <tr v-for="user in filterUser" :key="user.userID">
         <th scope="row"> {{ user.userID }}</th>
         <td> {{ user.firstName }}</td>
-        <td> {{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
+        <td> {{ user.lastName }}</td>
         <td>{{ user.userAge }}</td>
         <td>{{ user.userGender }}</td>
         <td>{{ user.emailAdd }}</td>
