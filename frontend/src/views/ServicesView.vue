@@ -1,6 +1,6 @@
 <template >
   <div class=" pt-3 bg-black " >
-    <h2 class="ServHead text-white text-center mb-4">Our Services</h2>
+    <h2 class="hea text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
     <div class="servBtn row text-end">
       <div class="col">
@@ -122,10 +122,10 @@
             />
           </template>
           <template #cardBody>
-            <h4 class="card-text text-white  mt-3">
+            <h4 class="hea text-white  mt-3">
               {{ service.servName }}
             </h4>
-            <h5 class="card-text  text-white">R{{ service.servAmount }}</h5>
+            <h5 class="hea  text-white">R{{ service.servAmount }}</h5>
 
             <div class="">
               <button
