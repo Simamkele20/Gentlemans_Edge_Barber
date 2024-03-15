@@ -40,9 +40,9 @@ class Users {
   res.json({
     status: res.statusCode,
     results,
-  });
-}
- }
+  })
+})
+ };
     
 
   // create a user
