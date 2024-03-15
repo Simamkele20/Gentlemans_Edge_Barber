@@ -41,7 +41,9 @@ class Users {
     status: res.statusCode,
     results,
   });
-});
+}
+ }
+    
 
   // create a user
   async createUser(req, res) {
