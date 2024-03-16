@@ -1,25 +1,24 @@
 <template>
+  <div class="container-fluid bg-black pb-5 ">
     <div class="container ">
-        <div class="mt-4">
-            <nav class="navbar nav-pills nav-underline bg-black w-100  w-md-25 justify-content-center mx-auto"
-                role="tablist">
-                <ul class="d-block d-md-flex mt-2  ">
-                    <li class="nav-item mx-2">
-                        <router-link to="/admin" class="nav-link link-light">Services </router-link>
-                    </li>
-                    <li class="nav-item mx-4">
-                        <router-link to="/users" class="nav-link link-light">Users</router-link>
-                    </li>
-                    <li class="nav-item mx-4">
-                        <a class="nav-link link-light">Staff</a>
-                    </li>
-                    <li class="nav-item mx-4">
-                        <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
-                    </li>
-                </ul>
-
-            </nav>
-        </div>
+      <div class="pt-4">
+        <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
+          <ul class="d-block d-md-flex  mt-2  ">
+            <li class="nav-item mx-2">
+         <router-link to="/admin">   <a class="btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/users" class="btn bg-white text-black">Users</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/staff" class="btn bg-dark text-white">Staff</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/bookings" class="btn bg-white text-black">Bookings</router-link>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
         <div class=" prodBtn d-block d-md-flex row text-end mt-4">
             <div class="col">
@@ -28,7 +27,7 @@
             </div>
 
             <div class="col-2 mx-3">
-                <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+                <button class=" btn  bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
                     Employee</button>
             </div>
             <!-- Modal-->
@@ -115,14 +114,14 @@
             </div>
         </div>
     </div>
-    <div class="text-center text-black mb-3 mt-3" v-if="!Staff && !loading">
+    <div class="text-center text-white mb-5 pb-5" v-if="!Staff && !loading">
         <Spinner />
     </div>
-    <div class="text-center text-black mb-3 mt-3" v-else-if="filterStaff.length === 0">
+    <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterStaff.length === 0">
         <h3>No Employee found.</h3>
     </div>
 
-    <table class="AdiCont w-75 table mt-5 text-center mx-auto" v-else>
+    <table class="AdiCont w-75 bg-white table mt-5 text-center mx-auto" v-else>
         <thead>
             <tr>
                 <th>ID</th>
@@ -140,16 +139,16 @@
                 <td> {{ employee.JobTittle }}</td>
                 <td><img :src="employee.staffUrl" class="w-75"></td>
                 <td>{{ employee.staffDescription }}</td>
-                <td> <button class=" btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + employee.staffID">
+                <td> <button class=" btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#edit' + employee.staffID">
                         Edit</button></td>
 
-                <td><button class="  btn btn-dark" data-bs-toggle="modal"
+                <td><button class="  btn bg-black text-white" data-bs-toggle="modal"
                         :data-bs-target="'#delete' + employee.staffID">
                         Delete</button></td>
             </tr>
         </tbody>
     </table>
-
+</div>
 </template>
 
 <script>
@@ -187,7 +186,7 @@ export default {
                 employee.employeeFullname?.toLowerCase().includes(this.searchInput.toLowerCase())
             );
         }
-     },
+    },
     mounted() {
         this.$store.dispatch("fetchStaff")
     },
@@ -197,13 +196,29 @@ export default {
         },
         deleteStaff(staffID) {
             this.$store.dispatch('deleteEmployee', staffID)
+                .then(() => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 600);
+                })
         },
         addStaff() {
             this.$store.dispatch('addNewEmployee', this.payload)
+                .then(() => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 600);
+                })
         },
         editStaff(staffID) {
             const updateData = Object.assign({}, { staffID }, this.payload)
             this.$store.dispatch('updateEmployee', updateData)
+                .then(() => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 600);
+                })
+        
         }
     }
 

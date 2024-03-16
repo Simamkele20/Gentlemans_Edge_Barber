@@ -1,39 +1,40 @@
 <template>
-  <div class="container ">
-    <div class="mt-4">
-      <nav class="navbar nav-pills nav-underline bg-black w-100  w-md-25 justify-content-center mx-auto" role="tablist">
-        <ul class="d-block d-md-flex mt-2  ">
-          <li class="nav-item mx-2">
-            <router-link to="/admin" class="nav-link link-light">Services </router-link>
-          </li>
-          <li class="nav-item mx-4">
-            <a class="nav-link link-light">Users</a>
-          </li>
-          <li class="nav-item mx-4">
-            <router-link to="/staff" class="nav-link link-light">Staff</router-link>
-          </li>
-          <li class="nav-item mx-4">
-            <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
-          </li>
-        </ul>
+  <div class="container-fluid bg-black pb-5 ">
+    <div class="container ">
+      <div class="pt-4">
+        <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
+          <ul class="d-block d-md-flex  mt-2  ">
+            <li class="nav-item mx-2">
+         <router-link to="/admin">   <a class="btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/users" class="btn bg-white text-black">Users</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/staff" class="btn bg-dark text-white">Staff</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/bookings" class="btn bg-white text-black">Bookings</router-link>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-      </nav>
-    </div>
 
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class="col">
         <input v-model="searchInput" type="text" placeholder="Search User by firstName" @input="Search"
-          class="form-control w-50">
+          class="form-control ">
       </div>
       <div class="col ">
-     <select v-model="selectedRole" class="btn form-class bg-dark text-white ">
-  <option value="All">Filter by UserRole</option>
-  <option value="user">User</option>
-  <option value="admin">Admin</option>
-</select>
+        <select v-model="selectedRole" class="btn form-class bg-dark text-white ">
+          <option value="All">Filter by UserRole</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
       </div>
       <div class="col-2 mx-3">
-        <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a User</button>
+        <button class=" btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a User</button>
       </div>
       <!-- Modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,44 +137,46 @@
     </div>
   </div>
 
-  <div class="text-center text-black mb-3 mt-3" v-if="!users && !loading">
-  <Spinner />
-</div>
-<div class="text-center text-black mb-3 mt-3" v-else-if="filterUser.length === 0">
-  <h3>No User found.</h3>
-</div>
+  <div class="text-center text-white mb-5 pb-5" v-if="!users && !loading">
+    <Spinner />
+  </div>
+  <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterUser.length === 0">
+    <h3>No User found.</h3>
+  </div>
 
-<table class="AdiCont table w-75 mt-5 text-center mx-auto" v-else>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Surname</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Email Address</th>
-      <th>Role</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody class="text-center mb-5">
-    <tr v-for="user in filterUser" :key="user.userID">
-      <th scope="row">{{ user.userID }}</th>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.userAge }}</td>
-      <td>{{ user.userGender }}</td>
-      <td>{{ user.emailAdd }}</td>
-      <td>{{ user.userRole }}</td>
-      <td>
-        <button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID">Edit</button>
-      </td>
-      <td>
-        <button class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + user.userID">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="AdiCont bg-white table w-75 mt-5 text-center mx-auto" v-else>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Email Address</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-center mb-5">
+      <tr v-for="user in filterUser" :key="user.userID">
+        <th scope="row">{{ user.userID }}</th>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.userAge }}</td>
+        <td>{{ user.userGender }}</td>
+        <td>{{ user.emailAdd }}</td>
+        <td>{{ user.userRole }}</td>
+        <td>
+          <button class="btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#edit' + user.userID">Edit</button>
+        </td>
+        <td>
+          <button class="btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#delete' + user.userID">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
 
 </template>
 
@@ -208,16 +211,14 @@ export default {
     filterUser() {
       const users = this.$store.state.users;
       if (!users) {
-        return []; 
+        return [];
       }
-      
-      // Filter users based on search input and selected role
       return users.filter(user =>
         user.firstName?.toLowerCase().includes(this.searchInput.toLowerCase()) &&
         (this.selectedRole === 'All' || user.userRole === this.selectedRole)
       );
     }
-  
+
   },
   mounted() {
     this.$store.dispatch("fetchUsers")
@@ -228,13 +229,28 @@ export default {
     },
     deleteUser(userID) {
       this.$store.dispatch('deleteUser', userID)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     },
     addUser() {
       this.$store.dispatch('register', this.payload)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     },
     editUser(userID) {
       const updateData = Object.assign({}, { userID }, this.payload)
       this.$store.dispatch('updateUser', updateData)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     }
   }
 

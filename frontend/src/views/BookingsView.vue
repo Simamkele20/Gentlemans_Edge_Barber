@@ -1,25 +1,24 @@
 <template>
-  <div class="container ">
-    <div class="mt-4">
-      <nav class="navbar nav-pills nav-underline bg-black w-100  w-md-25 justify-content-center mx-auto" role="tablist">
-        <ul class="d-block d-md-flex mt-2  ">
-          <li class="nav-item mx-2">
-            <router-link to="/admin" class="nav-link link-light">Services </router-link>
-          </li>
-          <li class="nav-item mx-4">
-            <router-link to="/users" class="nav-link link-light">Users</router-link>
-          </li>
-          <li class="nav-item mx-4">
-            <router-link to="/staff" class="nav-link link-light">Staff</router-link>
-          </li>
-          <li class="nav-item mx-4">
-            <router-link to="/bookings" class="nav-link link-light">Bookings</router-link>
-          </li>
-        </ul>
-
-      </nav>
-    </div>
-
+  <div class="container-fluid bg-black pb-5 ">
+    <div class="container ">
+      <div class="pt-4">
+        <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
+          <ul class="d-block d-md-flex  mt-2  ">
+            <li class="nav-item mx-2">
+         <router-link to="/admin">   <a class="btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/users" class="btn bg-white text-black">Users</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/staff" class="btn bg-dark text-white">Staff</router-link>
+            </li>
+            <li class="nav-item mx-4">
+              <router-link to="/bookings" class="btn bg-white text-black">Bookings</router-link>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class=" servBtn row text-end">
@@ -28,7 +27,7 @@
             class="form-control w-50">
         </div>
         <div class="col-2 mx-3">
-          <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+          <button class=" btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
         </div>
       </div>
 
@@ -177,14 +176,14 @@
     </div>
   </div>
 
-  <div class="text-center text-black mb-3 mt-3" v-if="!bookings && !loading">
+  <div class="text-center text-white mb-5 pb-5" v-if="!bookings && !loading">
     <Spinner />
-</div>
-<div class="text-center text-black mb-3 mt-3" v-else-if="displayedBookings.length === 0">
+  </div>
+  <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="displayedBookings.length === 0">
     <h3>No Booking found.</h3>
-</div>
-<table class="AdiCont table mt-5 text-center mx-auto w-75"  v-else>
-  <thead>
+  </div>
+  <table class="AdiCont table mt-5 bg-white text-center mx-auto w-75" v-else>
+    <thead>
       <tr>
         <th> Book ID</th>
         <th> Book Day</th>
@@ -195,7 +194,7 @@
         <th> Action</th>
       </tr>
     </thead>
-    <tbody class="text-center mb-5" >
+    <tbody class="text-center mb-5">
       <tr v-for="book in displayedBookings" :key="book.bookID">
         <th scope="row"> {{ book.bookID }}</th>
         <td> {{ book.bookDay }}</td>
@@ -203,14 +202,15 @@
         <td>{{ book.servName }}</td>
         <td>{{ book.employeeFullname }}</td>
         <td>{{ book.firstName }}</td>
-        <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#edit' + book.bookID">
+        <td><button class="  btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#edit' + book.bookID">
             Edit</button></td>
-        <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
+        <td><button class="  btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
             Cancel</button></td>
 
       </tr>
     </tbody>
-</table>
+  </table>
+  </div>
 </template>
 
 <script>
@@ -248,21 +248,21 @@ export default {
       return this.$store.state.users
     },
     displayedBookings() {
-  if (!Array.isArray(this.bookings)) {
-    console.error('Bookings data is not an array:', this.bookings);
-    return [];
-  }
+      if (!Array.isArray(this.bookings)) {
+        console.error('Bookings data is not an array:', this.bookings);
+        return [];
+      }
 
-  let items = [...this.bookings];
-  if (this.sortedItems) {
-    items.sort((a, b) => a.servAmount - b.servAmount);
-  } else if (this.searchInput) {
-    items = items.filter(booking =>
-      booking.firstName.toLowerCase().includes(this.searchInput.toLowerCase())
-    );
-  }
-  return items;
-}
+      let items = [...this.bookings];
+      if (this.sortedItems) {
+        items.sort((a, b) => a.servAmount - b.servAmount);
+      } else if (this.searchInput) {
+        items = items.filter(booking =>
+          booking.firstName.toLowerCase().includes(this.searchInput.toLowerCase())
+        );
+      }
+      return items;
+    }
   },
   mounted() {
     this.$store.dispatch("fetchBookings"),
@@ -274,9 +274,19 @@ export default {
   methods: {
     deleteBooking(bookID) {
       this.$store.dispatch('deleteBooking', bookID)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
 
     },
     Search() {
@@ -285,6 +295,11 @@ export default {
     editBooking(bookID) {
       const updateData = Object.assign({}, { bookID }, this.payload)
       this.$store.dispatch('updateBooking', updateData)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     }
 
 

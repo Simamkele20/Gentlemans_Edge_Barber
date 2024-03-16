@@ -1,6 +1,6 @@
 <template>
-  <div v-if="service" class="ServCont text-center mt-3">
-    <h1 class="text-danger "> {{ service.servName }}</h1>
+  <div v-if="service" class="hea  text-center pt-3 bg-black text-white">
+    <h1 class=" "> {{ service.servName }}</h1>
     <img :src="service.servUrl" class="card-img-top  mx-auto mt-4 border border-3 border-black p-5  w-25 " alt="Pro">
     <h5 class="w-50 mx-auto m-3">{{ service.servDescription }}</h5>
     <h3>R{{ service.servAmount }}</h3>
@@ -72,10 +72,6 @@ export default {
       this.$store.dispatch("fetchUsers"),
       this.$store.dispatch("fetchStaff")
   },
-  methods: {
-    addBook() {
-      this.$store.dispatch('addBooking', this.payload)
-    },
-  }
+
 }
 </script>

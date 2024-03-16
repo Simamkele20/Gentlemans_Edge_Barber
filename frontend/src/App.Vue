@@ -1,4 +1,4 @@
-<template>
+<template >
   <navbar />
   <main>
     <router-view />
@@ -20,5 +20,3 @@ export default {
   }
 }
 </script>
- 
-<style  src="@/assets/css/style.css"></style>
