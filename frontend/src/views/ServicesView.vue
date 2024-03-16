@@ -1,5 +1,5 @@
 <template>
-  <div class=" pt-3 bg-black ">
+  <div class="serv pt-3 bg-black ">
     <h2 class="hea text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
     <div class="servBtn row text-end">
@@ -72,7 +72,8 @@
       <Spinner />
     </div>
     <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="displayedServices.length === 0">
-      <h3 class="pb-5">No Service found.</h3>
+      <h3 class="pb-3">No services match your search  .</h3>
+    <h2 class="hea text-dark">Feel free to explore our service menu for alternative options</h2>
     </div>
     <div class="ServCar col pb-5 row d-grid d-md-flex" v-else>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-black pb-5 ">
+  <div class="service container-fluid bg-black pb-5 ">
     <div class="container ">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
@@ -110,10 +110,10 @@
       </div>
     </div>
 
-    <div class="text-center text-white pb-5 mb-5" v-if="!services && !loading">
+    <div class=" text-center text-white pb-5 mb-5" v-if="!services && !loading">
       <Spinner />
     </div>
-    <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterServ.length === 0">
+    <div class=" text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterServ.length === 0">
       <h3>No Service found.</h3>
     </div>
     <table class="AdiCont bg-white table mt-5 pb-5 w-75 text-center mx-auto" v-else>
@@ -146,6 +146,12 @@
 </template>
 
 <script>
+
+
+
+
+
+
 import Spinner from '@/components/Spinner.vue';
 
 export default {
@@ -183,9 +189,7 @@ export default {
 
   },
   mounted() {
-    this.$store.dispatch('fetchServices');
-
-
+    this.$store.dispatch('fetchServices')
 
   },
   methods: {
@@ -220,9 +224,10 @@ export default {
             window.location.reload();
           }, 600);
         })
-    }
+    },
   }
 }
+  
 </script>
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-black pb-5 ">
+  <div class="page container-fluid bg-black pb-5 ">
     <div class="container ">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">

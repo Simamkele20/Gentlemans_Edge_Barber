@@ -23,7 +23,7 @@
                         <router-link to="/services" class="nav-link">Services </router-link>
                     </li>
 
-                    <li class="nav-item" v-show="isUser">
+                    <li class="nav-item" v-show="user">
                         <router-link to="/booking" class="nav-link">Booking </router-link>
                     </li>
                
@@ -57,9 +57,6 @@ export default {
         },
         isAdmin() {
             return this.user?.result?.userRole == 'admin'
-        },
-        isUser() {
-            return this.user?.result?.userRole == 'user'
         }
 
 
