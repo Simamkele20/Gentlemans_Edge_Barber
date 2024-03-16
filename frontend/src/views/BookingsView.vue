@@ -5,16 +5,16 @@
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
           <ul class="d-block d-md-flex  mt-2  ">
             <li class="nav-item mx-2">
-         <router-link to="/admin">   <a class="btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+         <router-link to="/admin">   <a class="hea btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/users" class="btn bg-white text-black">Users</router-link>
+              <router-link to="/users" class="hea btn bg-white text-black">Users</router-link>
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/staff" class="btn bg-dark text-white">Staff</router-link>
+              <router-link to="/staff" class="hea btn bg-dark text-white">Staff</router-link>
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/bookings" class="btn bg-white text-black">Bookings</router-link>
+              <router-link to="/bookings" class="hea btn bg-white text-black">Bookings</router-link>
             </li>
           </ul>
         </nav>
@@ -27,7 +27,7 @@
             class="form-control w-50">
         </div>
         <div class="col-2 mx-3">
-          <button class=" btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+          <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
         </div>
       </div>
 
@@ -183,7 +183,7 @@
     <h3>No Booking found.</h3>
   </div>
   <table class="AdiCont table mt-5 bg-white text-center mx-auto w-75" v-else>
-    <thead>
+    <thead  class="hea">
       <tr>
         <th> Book ID</th>
         <th> Book Day</th>

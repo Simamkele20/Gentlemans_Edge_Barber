@@ -5,16 +5,16 @@
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
           <ul class="d-block d-md-flex  mt-2  ">
             <li class="nav-item mx-2">
-         <router-link to="/admin">   <a class="btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+         <router-link to="/admin">   <a class="hea btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/users" class="btn bg-white text-black">Users</router-link>
+              <router-link to="/users" class="hea btn bg-white text-black">Users</router-link>
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/staff" class="btn bg-dark text-white">Staff</router-link>
+              <router-link to="/staff" class="hea btn bg-dark text-white">Staff</router-link>
             </li>
             <li class="nav-item mx-4">
-              <router-link to="/bookings" class="btn bg-white text-black">Bookings</router-link>
+              <router-link to="/bookings" class="hea btn bg-white text-black">Bookings</router-link>
             </li>
           </ul>
         </nav>
@@ -34,7 +34,7 @@
         </select>
       </div>
       <div class="col-2 mx-3">
-        <button class=" btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a User</button>
+        <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add a User</button>
       </div>
       <!-- Modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -145,7 +145,7 @@
   </div>
 
   <table class="AdiCont bg-white table w-75 mt-5 text-center mx-auto" v-else>
-    <thead>
+    <thead  class="hea">
       <tr>
         <th>ID</th>
         <th>Name</th>
