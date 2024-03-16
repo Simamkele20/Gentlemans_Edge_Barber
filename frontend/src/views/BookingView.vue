@@ -90,11 +90,11 @@
     </div>
   </div>
   <div class="text-center pb-3 pt-3" v-if="!booking && !loading">
-  <Spinner /> 
-</div>
-<div class="text-center text-black mb-3 mt-3" v-else-if="displayedBookings.length === 0">
-  <h3 class="pb-5">No Booking found.</h3>
-</div>
+    <Spinner />
+  </div>
+  <div class="text-center text-black mb-3 mt-3" v-else-if="displayedBookings.length === 0">
+    <h3 class="pb-5">No Booking found.</h3>
+  </div>
   <table class="AdiCont table mt-5 text-center mx-auto" v-else>
     <thead>
       <tr>
@@ -136,8 +136,8 @@ export default {
         "bookStart": null,
         "bookEnd": null,
         "employeeFullname": null,
-        "firstName": cookies.get('VerifiedUser').result.firstName,
-        "userID": cookies.get('VerifiedUser').result.userID
+        "firstName": cookies.get('VerifiedUser').result?.firstName,
+        "userID": cookies.get('VerifiedUser').result?.userID
       }
 
     }
@@ -182,10 +182,19 @@ export default {
   methods: {
     deleteBooking(bookID) {
       this.$store.dispatch('deleteBooking', bookID)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)
-
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
     },
     Search() {
       'Search input:', this.searchInput

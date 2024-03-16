@@ -1,39 +1,23 @@
-<template >
-  <div class=" pt-3 bg-black " >
+<template>
+  <div class=" pt-3 bg-black ">
     <h2 class="hea text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
     <div class="servBtn row text-end">
       <div class="col">
-        <input
-          v-model="searchInput"
-          type="text"
-          placeholder="Search Service by name"
-          @input="Search"
-          class="form-control w-50"
-        />
+        <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
+          class="form-control w-50" />
       </div>
       <div class="col">
         <button @click="sortItems" class="btn btn-dark">Sort by Price</button>
       </div>
     </div>
     <!-- Modal-->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Add Booking</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <h5 class="text-start">Book Day:</h5>
@@ -61,94 +45,63 @@
             <h5 class="text-start mt-2">Service Name:</h5>
             <select v-model="payload.servName" type="text" class="form-control">
               <option></option>
-              <option
-                :value="service.servName"
-                v-for="service in services"
-                :key="service.servID"
-              >
+              <option :value="service.servName" v-for="service in services" :key="service.servID">
                 {{ service.servName }}
               </option>
             </select>
             <h5 class="text-start mt-2">Employee FullName:</h5>
-            <select
-              v-model="payload.employeeFullname"
-              type="text"
-              class="form-control"
-            >
+            <select v-model="payload.employeeFullname" type="text" class="form-control">
               <option value=""></option>
-              <option
-                :value="employee.employeeFullname"
-                v-for="employee in staff"
-                :key="employee.staffID"
-              >
+              <option :value="employee.employeeFullname" v-for="employee in staff" :key="employee.staffID">
                 {{ employee.employeeFullname }}
               </option>
             </select>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button @click="addBook()" type="button" class="btn btn-dark">
-                Add Booking
-              </button>
+              <router-link to="/booking"> <button @click="addBook()" type="button" class="btn btn-dark">
+                  Add Booking
+                </button></router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center pb-3 pt-3" v-if="!services && !loading">
-  <Spinner /> 
-</div>
-<div class="text-center text-white mb-3 mt-3" v-else-if="displayedServices.length === 0">
-  <h3 class="pb-5">No Service found.</h3>
-</div>
-    <div class="ServCar col pb-5 row d-grid d-md-flex"  v-else>
-      
-        <Card
-          v-for="service in displayedServices"
-          :key="service.servID"
-          class="text-center"
-          id="cardPro"
-        >
-          <template #cardHeader>
-            <img
-              :src="service.servUrl"
-              class="card-img-top mx-auto mt-4 w-75"
-              alt="Pro"
-            />
-          </template>
-          <template #cardBody>
-            <h4 class="hea text-white  mt-3">
-              {{ service.servName }}
-            </h4>
-            <h5 class="hea  text-white">R{{ service.servAmount }}</h5>
-
-            <div class="">
-              <button
-                class="btn btn-dark mx-4"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                v-show="user"
-              >
-                Book Now
-              </button>
-              <router-link
-                :to="{ name: 'service', params: { id: service.servID } }"
-                ><button class="btn bg-dark text-white" v-show="user">
-                  View More
-                </button>
-              </router-link>
-            </div>
-          </template>
-        </Card>
-      </div>
-
+      <Spinner />
     </div>
-  
+    <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="displayedServices.length === 0">
+      <h3 class="pb-5">No Service found.</h3>
+    </div>
+    <div class="ServCar col pb-5 row d-grid d-md-flex" v-else>
+
+      <Card v-for="service in displayedServices" :key="service.servID" class="text-center" id="cardPro">
+        <template #cardHeader>
+          <img :src="service.servUrl" class="card-img-top mx-auto mt-4 w-75" alt="Pro" />
+        </template>
+        <template #cardBody>
+          <h4 class="hea text-white  mt-3">
+            {{ service.servName }}
+          </h4>
+          <h5 class="hea  text-white">R{{ service.servAmount }}</h5>
+
+          <div class="">
+            <button class="btn bg-white text-black mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal" v-show="user">
+              Book Now
+            </button>
+            <router-link :to="{ name: 'service', params: { id: service.servID } }"><button
+                class="btn bg-dark text-white" v-show="user">
+                View More
+              </button>
+            </router-link>
+          </div>
+        </template>
+      </Card>
+    </div>
+
+  </div>
+
 </template>
 
 <script>
@@ -195,7 +148,7 @@ export default {
     };
   },
   components: {
-    Card,  Spinner
+    Card, Spinner
   },
   computed: {
     user() {
@@ -233,7 +186,13 @@ export default {
       this.sortedItems = !this.sortedItems;
     },
     addBook() {
-      this.$store.dispatch("addBooking", this.payload);
+      this.$store.dispatch("addBooking", this.payload)
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 900);
+        })
+
     },
   },
 };
