@@ -1,7 +1,7 @@
 <template>
-   <div class="container-fluid bg-black pb-5 ">
+   <div class="page container-fluid bg-black pb-5 ">
   <div class="container ">
-    <h2 class="hea text-center text-white pt-3">My Bookings</h2>
+    <h2 class="hea text-center text-white pt-3">Your Bookings</h2>
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class=" servBtn row text-end">
         <div class="col">
@@ -92,9 +92,10 @@
     <Spinner />
   </div>
   <div class="text-center text-white pb-5 pt-5" v-else-if="displayedBookings.length === 0">
-    <h3 class="pb-5">No Booking found.</h3>
+    <h3 class="pb-2 mt-5">No Booking found.</h3>
+    <h2 class="hea text-dark">We kindly request that you book your appointment.</h2>
   </div>
-  <table class="AdiCont bg-white pb-5 table mt-5 mb-5 pt-5 text-center mx-auto" v-else>
+  <table class="AdiCont  container bg-white pb-5 table mt-5 mb-5 pt-5 text-center mx-auto" v-else>
     <thead class="hea">
       <tr>
         <th> Book ID</th>

@@ -12,7 +12,20 @@
 }
 
 
+.page{
+  height: 100vh;
+}
+
+.serv{
+  height: 200vh;
+}
+
+
+
 /* Services Content */
+.service{
+  height: 160vh;
+}
 .hea{
   font-family: "Black Ops One", system-ui;
   font-weight: 400;
