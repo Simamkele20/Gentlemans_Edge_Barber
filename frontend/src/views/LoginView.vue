@@ -8,7 +8,7 @@
       <form>
         <div class="field">
           <div class="fas "> <i class="bi bi-envelope"></i></div>
-          <input v-model="payload.emailAdd" type="text" placeholder="email@example.com ">
+          <input v-model="payload.emailAdd" type="email" placeholder="email@example.com ">
         </div>
         <div class="field">
           <div class="fas "> <i class="bi bi-lock-fill"></i></div>
