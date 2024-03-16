@@ -4,7 +4,7 @@
     <router-view />
   </main>
 
-  <Footer />
+  <Footer/>
 </template>
  
 <script>
