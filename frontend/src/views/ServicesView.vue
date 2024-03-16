@@ -8,7 +8,7 @@
           class="form-control w-50" />
       </div>
       <div class="col">
-        <button @click="sortItems" class="hea btn bg-white text-black">Sort by Price</button>
+        <button @click="sortItems" class="btn bg-white">Sort by Price</button>
       </div>
     </div>
     <!-- Modal-->
@@ -60,20 +60,20 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <router-link to="/booking"> <button @click="addBook()" type="button" class="btn btn-dark">
-                  Add Booking
-                </button></router-link>
+              <router-link to="/booking">   <button @click="addBook()" type="button" class="btn btn-dark">
+                Add Booking
+              </button></router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="text-center pb-3 pt-3" v-if="!services && !loading">
+    <div class="text-center text-white pb-3 pt-3" v-if="!services && !loading">
       <Spinner />
     </div>
-    <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="displayedServices.length === 0">
-      <h3 class="pb-3">No services match your search  .</h3>
-    <h2 class="hea text-dark">Feel free to explore our service menu for alternative options</h2>
+    <div class="text-center text-white mb-3 mt-5 pt-5" v-else-if="displayedServices.length === 0">
+      <h3 class="pb-3">No Service found.</h3>
+      <h2 class="hea text-dark">Feel free to explore our service menu for alternative options.</h2>
     </div>
     <div class="ServCar col pb-5 row d-grid d-md-flex" v-else>
 
@@ -88,7 +88,7 @@
           <h5 class="hea  text-white">R{{ service.servAmount }}</h5>
 
           <div class="">
-            <button class="btn bg-white text-black mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal" v-show="user">
+           <button class="btn bg-white mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal" v-show="user">
               Book Now
             </button>
             <router-link :to="{ name: 'service', params: { id: service.servID } }"><button
@@ -191,7 +191,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             window.location.reload();
-          }, 900);
+          }, 600);
         })
 
     },

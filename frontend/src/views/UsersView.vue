@@ -142,6 +142,7 @@
   </div>
   <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterUser.length === 0">
     <h3>No User found.</h3>
+    <h2 class="hea text-dark">Kindly add the User</h2>
   </div>
 
   <table class="AdiCont bg-white table w-75 mt-5 text-center mx-auto" v-else>

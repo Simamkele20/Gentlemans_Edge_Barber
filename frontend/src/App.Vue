@@ -19,4 +19,4 @@ export default {
 
   }
 }
-</script>
+</script>./App.Vue
