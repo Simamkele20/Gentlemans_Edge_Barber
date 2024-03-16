@@ -181,6 +181,7 @@
   </div>
   <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="displayedBookings.length === 0">
     <h3>No Booking found.</h3>
+    <h2 class="hea text-dark">kindly add the booking.</h2>
   </div>
   <table class="AdiCont table mt-5 bg-white text-center mx-auto w-75" v-else>
     <thead  class="hea">

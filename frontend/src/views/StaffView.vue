@@ -126,6 +126,7 @@
         </div>
         <div class="text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterStaff.length === 0">
             <h3>No Employee found.</h3>
+            <h2 class="hea text-dark">Kindly add the Employee.</h2>
         </div>
 
         <table class="AdiCont w-75 bg-white table mt-5 text-center mx-auto" v-else>
