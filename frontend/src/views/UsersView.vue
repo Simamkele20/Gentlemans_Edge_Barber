@@ -58,7 +58,7 @@
               <h5 class="text-start mt-2">User Age: </h5>
               <input v-model="payload.userAge" type="number" placeholder="Age" class="form-control">
               <h5 class="text-start mt-2">User Email Address: </h5>
-              <input v-model="payload.emailAdd" type="text" placeholder="Email Address" class="form-control">
+              <input v-model="payload.emailAdd" type="email" placeholder="Email Address" class="form-control">
               <h5 class="text-start mt-2">User Role: </h5>
               <select v-model="payload.userRole" type="text" class="form-control " id="exampleDropdownFormEmail1"
                 placeholder="Please Select your Role">
@@ -66,7 +66,7 @@
                 <option value="admin">Admin</option>
               </select>
               <h5 class="text-start mt-2">User Password: </h5>
-              <input v-model="payload.userPwd" type="text" placeholder="Password" class="form-control">
+              <input v-model="payload.userPwd" type="password" placeholder="Password" class="form-control">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -237,10 +237,11 @@ export default {
     },
     addUser() {
       this.$store.dispatch('register', this.payload)
+        this.$router.push('/users')
         .then(() => {
           setTimeout(() => {
             window.location.reload();
-          }, 600);
+          }, 700);
         })
     },
     editUser(userID) {
