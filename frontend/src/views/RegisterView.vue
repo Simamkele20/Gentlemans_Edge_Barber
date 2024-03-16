@@ -30,13 +30,6 @@
           <input v-model="payload.emailAdd" type="email" placeholder="Enter Your Email">
         </div>
         <div class="field">
-          <select v-model="payload.userRole" type="text" required>
-            <option value="" disabled selected hidden>Choose a Gender</option>
-            <option value="user">User</option>
-
-          </select>
-        </div>
-        <div class="field">
 
           <input v-model="payload.userPwd" type="password" placeholder="Password">
         </div>
@@ -53,6 +46,7 @@
 <script>
 
 
+
 export default {
   data() {
     return {
@@ -64,7 +58,7 @@ export default {
         "userGender": null,
         "emailAdd": null,
         "userPwd": null,
-        "userRole": null,
+        "userRole": "user",
       }
     }
   },
