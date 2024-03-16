@@ -8,7 +8,7 @@
           class="form-control w-50" />
       </div>
       <div class="col">
-        <button @click="sortItems" class="btn btn-dark">Sort by Price</button>
+        <button @click="sortItems" class="hea btn bg-white text-black">Sort by Price</button>
       </div>
     </div>
     <!-- Modal-->

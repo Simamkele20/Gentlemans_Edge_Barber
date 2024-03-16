@@ -1,8 +1,7 @@
 <template>
+   <div class="container-fluid bg-black pb-5 ">
   <div class="container ">
-    <h2 class="text-center mt-3">My Bookings</h2>
-
-
+    <h2 class="hea text-center text-white pt-3">My Bookings</h2>
     <div class=" prodBtn d-block d-md-flex row text-end mt-4">
       <div class=" servBtn row text-end">
         <div class="col">
@@ -10,7 +9,7 @@
             class="form-control w-50">
         </div>
         <div class="col-5">
-          <button class=" btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+          <button class="hea btn bg-white" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
         </div>
       </div>
       <!-- Modal-->
@@ -89,14 +88,14 @@
       </div>
     </div>
   </div>
-  <div class="text-center pb-3 pt-3" v-if="!booking && !loading">
+  <div class="text-center text-white pb-3 pt-3" v-if="!booking && !loading">
     <Spinner />
   </div>
-  <div class="text-center text-black mb-3 mt-3" v-else-if="displayedBookings.length === 0">
+  <div class="text-center text-white pb-5 pt-5" v-else-if="displayedBookings.length === 0">
     <h3 class="pb-5">No Booking found.</h3>
   </div>
-  <table class="AdiCont table mt-5 text-center mx-auto" v-else>
-    <thead>
+  <table class="AdiCont bg-white pb-5 table mt-5 mb-5 pt-5 text-center mx-auto" v-else>
+    <thead class="hea">
       <tr>
         <th> Book ID</th>
         <th> Book Day</th>
@@ -113,12 +112,12 @@
         <td> {{ book.bookTime }}</td>
         <td>{{ book.servName }}</td>
         <td>{{ book.employeeFullname }}</td>
-        <td><button class="  btn btn-dark" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
+        <td><button class="  btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#delete' + book.bookID">
             Cancel</button></td>
       </tr>
     </tbody>
   </table>
-
+</div>
 </template>
 
 <script>
