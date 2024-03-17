@@ -350,6 +350,11 @@ export default {
     -webkit-animation: cloud-x1 5s linear infinite;
   }
 
+  ::-webkit-scrollbar {
+  display: none;
+}
+
+
   &.cloud-x2 {
     top: 117px;
     left: 20px;

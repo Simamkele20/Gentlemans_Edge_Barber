@@ -57,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
+::-webkit-scrollbar {
+      display: none;
+    }
+    
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 * {
@@ -180,4 +184,6 @@ button:hover {
 .link a:hover {
   text-decoration: underline;
 }
+
+
 </style>
