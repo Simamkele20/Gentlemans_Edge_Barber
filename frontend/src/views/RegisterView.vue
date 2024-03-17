@@ -202,4 +202,9 @@ button:hover {
 .link a:hover {
   text-decoration: underline;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 </style>
