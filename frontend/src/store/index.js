@@ -147,10 +147,13 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try {
+       
         let { msg } = await (
           await axios.patch(`${URL}users/update/${payload.userID}`, payload)
-        ).data;
-
+          ).data;
+        let {token, result} = cookies.get("VerifiedUser")
+        result = Object.assign({}, payload) 
+        cookies.set('VerifiedUser', {token, result})
         context.dispatch("fetchUsers");
         sweet({
           title: "Update user",
@@ -181,7 +184,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when deleting a user.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -238,7 +241,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "A service was not found.",
+          text:e.message,
           icon: "error",
           timer: 2000,
         });
