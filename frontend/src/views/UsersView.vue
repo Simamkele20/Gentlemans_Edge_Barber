@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
+
       <!-- Modal edit -->
       <div class="modal fade" :id="'edit' + user.userID" tabindex="-1" aria-labelledby="edit" aria-hidden="true"
         v-for="user in users" :key="user.userID">
@@ -115,6 +116,7 @@
           </div>
         </div>
       </div>
+      
       <!-- Modal delete-->
       <div class="modal fade" :id="'delete' + user.userID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
         v-for="user in users" :key="user.userID">
@@ -183,6 +185,7 @@
 
 <script>
 import Spinner from '@/components/Spinner.vue';
+
 export default {
   name: "UsersView",
   data() {
@@ -199,8 +202,7 @@ export default {
         "userPwd": null,
         "userRole": null,
       }
-
-    }
+        }
   },
   components: {
     Spinner

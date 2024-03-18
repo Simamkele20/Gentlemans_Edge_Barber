@@ -84,8 +84,9 @@ const routes = [
     name: "profile",
     component: () => import("../views/ProfileVIew.vue"),
     beforeEnter(){
-      if(!cookies.get("VerifiedUser"))
+      if(!cookies.get("VerifiedUser") )
       router.push({name : "login" })
+   
     }
   },
   {

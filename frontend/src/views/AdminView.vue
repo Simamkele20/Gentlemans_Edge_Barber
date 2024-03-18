@@ -115,7 +115,7 @@
     </div>
     <div class=" text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterServ.length === 0">
       <h3>No Service found.</h3>
-      <h2 class="hea text-dark">Kindly add the service.</h2>
+      <h2 class="hea text-dark">Kindly add the service.</h2> 
     </div>
     <table class="AdiCont bg-white table mt-5 pb-5 w-75 text-center mx-auto" v-else>
       <thead  class="hea">
@@ -189,7 +189,7 @@ export default {
     }
 
   },
-  mounted() {
+  mounted() { 
     this.$store.dispatch('fetchServices')
 
   },

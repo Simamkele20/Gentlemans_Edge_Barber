@@ -15,9 +15,6 @@
 
   </div>
 
-
-
-
   <div class="row mx-auto" v-else>
     <Spinner />
   </div>
@@ -26,24 +23,9 @@
 
 <script>
 import Spinner from '@/components/Spinner.vue';
-import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
+
 export default {
-  data() {
-    return {
-      payload:
-      {
-        "bookDay": null,
-        "bookStart": null,
-        "bookEnd": null,
-        "employeeFullname": null,
 
-        "firstName": cookies.get('VerifiedUser').result.firstName,
-        "userID": cookies.get('VerifiedUser').result.userID
-      }
-
-    }
-  },
   components: {
     Spinner
   },
@@ -51,26 +33,11 @@ export default {
     service() {
       return this.$store.state.service
     },
-    bookings() {
-      return this.$store.state.bookings
-    },
-    services() {
-      return this.$store.state.services
-    },
-    staff() {
-      return this.$store.state.staff
-    },
-    users() {
-      return this.$store.state.users
-    }
+  
 
   },
   mounted() {
-    this.$store.dispatch('fetchService', this.$route.params),
-      this.$store.dispatch("fetchBookings"),
-      this.$store.dispatch("fetchServices"),
-      this.$store.dispatch("fetchUsers"),
-      this.$store.dispatch("fetchStaff")
+    this.$store.dispatch('fetchService', this.$route.params)
   },
 
 }
