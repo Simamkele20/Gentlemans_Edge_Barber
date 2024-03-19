@@ -45,13 +45,6 @@
                                 <h5 class="text-start mt-2">User Email Address: </h5>
                                 <input v-model="payload.emailAdd" type="text" :placeholder="payload.emailAdd"
                                     class="form-control text-black">
-
-                                <h5 class="text-start mt-2">User Role: </h5>
-                                <select v-model="payload.userRole" type="text" class="form-control "
-                                    id="exampleDropdownFormEmail1" placeholder="Please Select your Role">
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                </select>
                                 <h5 class="text-start mt-2">User Password: </h5>
                                 <input v-model="payload.userPwd" type="text" placeholder="Enter you password"
                                     class="form-control text-black">
@@ -75,12 +68,12 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title  fs-5" id="delete">Delete User</h1>
+                                <h1 class="modal-title  fs-5 text-black" id="delete">Delete User</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <h5 class="text-start">Are you sure?</h5>
+                            <div class="modal-body ">
+                                <h5 class="text-start text-black">Are you sure?</h5>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
