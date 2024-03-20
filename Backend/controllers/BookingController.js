@@ -40,9 +40,9 @@ bookingRouter.post("/addBooking",bodyParser.json(), (req, res) => {
   }
 });
 // delete all bookings
-bookingRouter.delete("/deleteAll", (req, res) => {
+bookingRouter.delete("/delete/users/:id", (req, res) => {
     try {
-        bookings.deleteAllBookings(req, res);
+        bookings.deleteUserBookings(req, res);
     } catch (e) {
         res.json({
             status: res.statusCode,
