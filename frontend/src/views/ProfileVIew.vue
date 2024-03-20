@@ -193,7 +193,6 @@ export default {
 
 
 .Login {
-
     height: 83vh;
     text-align: center;
     align-items: center;
@@ -203,7 +202,7 @@ export default {
 
 .login-form {
     position: relative;
-    width: 320px;
+    width: 300px;
     height: auto;
     background: #1b1b1b;
     padding: 40px 35px 60px;

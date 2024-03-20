@@ -1,6 +1,6 @@
 <template>
   <div class="page container-fluid bg-black pb-5 ">
-    <div class="container ">
+    <div class=" ">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
           <ul class="d-block d-md-flex  mt-2  ">
@@ -27,7 +27,7 @@
           <input v-model="searchInput" type="text" placeholder="Search User by firstName" @input="Search"
             class="form-control ">
         </div>
-        <div class="col ">
+        <div class="col">
           <select v-model="selectedRole" class="btn form-class bg-dark text-white ">
             <option value="All">Filter by UserRole</option>
             <option value="user">User</option>
