@@ -34,9 +34,8 @@
 
 <!-- Right contact page -->
 
-<div class="direct-contact-container mt-5 ">
-
-<ul class="contact-list mx-1 mb-5">
+<div class="direct-contact-container mt-5  ">
+<ul class="contact-list mx-2 mb-5">
   <li class="list-item"><i class="bi bi-geo-alt"><span class="contact-text place">South Africa,Cape
         Town</span></i></li>
 
@@ -44,13 +43,12 @@
           href="tel:+27 65 6013 640" title="Give me a call">(+27) 656 013 640</a></span></i></li>
 
   <li class="list-item"><i class="bi bi-envelope"><span class="contact-text gmail "><a href="mailto:GentlemansEdgeBarber@gmail.com"
-          title="Send me an email">GentlemansEdgeBarber@gmail.com</a></span></i></li>
+          title="Send me an email"><h6 class="ema">GentlemansEdgeBarber@gmail.com</h6></a></span></i></li>
 
 </ul>
 
 <hr>
 <ul class="social-media-list">
-
   <a href="https://github.com/Simamkele20" target="_blank" class="contact-icon">
     <i class="bi bi-github" aria-hidden="true"></i>
   </a>

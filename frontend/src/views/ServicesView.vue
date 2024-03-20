@@ -2,7 +2,7 @@
   <div class="serv pt-3 bg-black ">
     <h2 class="hea text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
-    <div class="servBtn row text-end">
+    <div class="servBtn d-grid d-md-flex row text-end">
       <div class="col">
         <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
           class="form-control w-50" />

@@ -1,8 +1,8 @@
 <template>
   <div class="Home ">
 
-    <h2 class="text-white">Welcome To</h2>
-    <h1 class="text-white">Gentleman's Edge Barber</h1>
+    <h2 class="hea text-white">Welcome To</h2>
+    <h1 class="head text-white">Gentleman's Edge Barber</h1>
     <div class="main">
       <div class="cloud-box">
         <div class="cloud cloud-x1"></div>
@@ -303,6 +303,20 @@ export default {
 
 
 <style scoped>
+@media screen and (max-width: 489px) {
+.hea{
+  padding-top: 193px;
+
+}
+.head{
+  padding-bottom: 193px;
+}
+.main {
+ display: none;
+  }
+
+}
+
 .Home {
   font-family: "Black Ops One", system-ui;
   font-weight: 400;
@@ -351,8 +365,8 @@ export default {
   }
 
   ::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 
 
   &.cloud-x2 {

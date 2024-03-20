@@ -143,9 +143,9 @@
             <tbody class="text-center mb-5">
                 <tr v-for="employee in filterStaff" :key="employee.staffID">
                     <th scope="row"> {{ employee.staffID }}</th>
-                    <td class="w-25"> {{ employee.employeeFullname }}</td>
+                    <td > {{ employee.employeeFullname }}</td>
                     <td> {{ employee.JobTittle }}</td>
-                    <td><img :src="employee.staffUrl" class="w-75"></td>
+                    <td><img :src="employee.staffUrl" class="w-50"></td>
                     <td>{{ employee.staffDescription }}</td>
                     <td> <button class=" btn bg-black text-white" data-bs-toggle="modal"
                             :data-bs-target="'#edit' + employee.staffID">

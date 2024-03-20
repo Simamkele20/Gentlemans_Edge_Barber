@@ -129,13 +129,13 @@
           <th> Action</th>
         </tr>
       </thead>
-      <tbody class="text-center ">
+      <tbody class="justify-content-center ">
         <tr v-for="service in filterServ" :key="service.servID">
           <th scope="row"> {{ service.servID }}</th>
-          <td><img :src="service.servUrl" class="w-25"></td>
+          <td><img :src="service.servUrl" class="w-50"></td>
           <td>{{ service.servName }} </td>
-          <td class="w-25">{{ service.servDescription }} </td>
-          <td class="w-25"> R {{ service.servAmount }} </td>
+          <td class="">{{ service.servDescription }} </td>
+          <td class=""> R {{ service.servAmount }} </td>
           <td><button class="btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID">
               Edit</button>
           </td>
