@@ -10,6 +10,12 @@
       <div class="col">
         <button @click="sortItems" class="btn bg-white">Sort by Price</button>
       </div>
+      <div class="col-2">
+        <select v-model="sortByName" class="btn form-class bg-white text-black ">
+          <option value="A-Z">Filter by Name (A-Z)</option>
+          <option value="Z-A">Filter by Name (Z-A)</option>
+        </select>
+      </div>
     </div>
     <!-- Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,9 +66,9 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <router-link to="/booking">   <button @click="addBook()" type="button" class="btn btn-dark">
-                Add Booking
-              </button></router-link>
+              <router-link to="/booking"> <button @click="addBook()" type="button" class="btn btn-dark">
+                  Add Booking
+                </button></router-link>
             </div>
           </div>
         </div>
@@ -71,13 +77,13 @@
     <div class="text-center text-white pb-3 pt-3" v-if="!services && !loading">
       <Spinner />
     </div>
-    <div class="text-center text-white mb-3 mt-5 pt-5" v-else-if="displayedServices.length === 0">
+    <div class="text-center text-white mb-3 mt-5 pt-5" v-else-if="filterServices.length === 0">
       <h3 class="pb-3">No Service found.</h3>
       <h2 class="hea text-dark">Feel free to explore our service menu for alternative options.</h2>
     </div>
     <div class="ServCar col pb-5 row d-grid d-md-flex" v-else>
 
-      <Card v-for="service in displayedServices" :key="service.servID" class="text-center" id="cardPro">
+      <Card v-for="service in filterServices" :key="service.servID" class="text-center" id="cardPro">
         <template #cardHeader>
           <img :src="service.servUrl" class="card-img-top mx-auto mt-4 w-75" alt="Pro" />
         </template>
@@ -88,7 +94,7 @@
           <h5 class="hea  text-white">R{{ service.servAmount }}</h5>
 
           <div class="">
-           <button class="btn bg-white mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal" v-show="user">
+            <button class="btn bg-white mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal" v-show="user">
               Book Now
             </button>
             <router-link :to="{ name: 'service', params: { id: service.servID } }"><button
@@ -126,6 +132,7 @@ if (verifiedUser) {
 export default {
   data() {
     return {
+      sortByName: 'A-Z',
       searchInput: "",
       sortedItems: false,
       Services: [
@@ -161,19 +168,28 @@ export default {
     services() {
       return this.$store.state.services;
     },
-    displayedServices() {
-      let items = [...this.services];
+    filterServices() {
+      let services = [...this.$store.state.services];
       if (this.sortedItems) {
-        items.sort((a, b) => a.servAmount - b.servAmount);
-      } else if (this.searchInput) {
-        items = items.filter((service) =>
-          service.servName
-            .toLowerCase()
-            .includes(this.searchInput.toLowerCase())
+        services.sort((a, b) => a.servAmount - b.servAmount);
+      } else {
+        if (this.sortByName === 'A-Z') {
+          services.sort((a, b) => a.servName.localeCompare(b.servName));
+        } else if (this.sortByName === 'Z-A') {
+          services.sort((a, b) => b.servName.localeCompare(a.servName));
+        }
+      }
+      if (this.searchInput) {
+        services = services.filter(service =>
+          service.servName.toLowerCase().includes(this.searchInput.toLowerCase())
         );
       }
-      return items;
-    },
+      return services;
+    }
+
+
+
+
   },
   mounted() {
     this.$store.dispatch("fetchServices"), this.$store.dispatch("fetchStaff");
@@ -194,7 +210,7 @@ export default {
           }, 600);
         })
 
-    },
+    }
   },
 };
 </script>

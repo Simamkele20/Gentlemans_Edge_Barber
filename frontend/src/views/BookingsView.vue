@@ -1,6 +1,6 @@
 <template>
   <div class="page container-fluid bg-black pb-5 ">
-    <div class="container ">
+    <div class="">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
           <ul class="d-block d-md-flex  mt-2  ">
@@ -23,12 +23,16 @@
 
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
         <div class=" servBtn row text-end">
-          <div class="col">
+          <div class="col-7">
             <input v-model="searchInput" type="text" placeholder="Search Booking by Customer Name" @input="Search"
               class="form-control w-50">
           </div>
-          <div class="col-2 mx-3">
+          <div class="col mx-3">
             <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+              Booking</button>
+          </div>
+          <div class="col">
+            <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#deleteAll"> Cancel All
               Booking</button>
           </div>
         </div>
@@ -158,6 +162,25 @@
 
       </div>
     </div>
+    <!-- Modal delete all-->
+    <div class="modal fade" id="deleteAll" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title  fs-5" id="delete">Cancel All Booking</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-start">Are you sure?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button @click.prevent="deleteBookings()" type="button" class="btn btn-dark">Cancel All
+              Bookings</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Modal delete-->
     <div class="modal fade" :id="'delete' + book.bookID" tabindex="-1" aria-labelledby="delete" aria-hidden="true"
       v-for="book in bookings" :key="book.bookID">
@@ -284,6 +307,9 @@ export default {
             window.location.reload();
           }, 600);
         })
+    },
+    deleteBookings() {
+      this.$store.dispatch('deleteAllBookings')
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)

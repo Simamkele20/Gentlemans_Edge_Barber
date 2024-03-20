@@ -24,7 +24,7 @@
                     </li>
 
                     <li class="nav-item" v-show="user">
-                        <router-link to="/booking" class="nav-link">Booking </router-link>
+                        <router-link to="/checkout" class="nav-link">Checkout</router-link>
                     </li>
                
 
