@@ -112,12 +112,7 @@ async addBooking(req, res) {
   deleteUserBookings(req, res) {
     const qry = `
       DELETE
-    b.bookID,
-   b.bookDay,
-    b.bookTime,
-    b.servName,
-    b.employeeFullname,
-    u.firstName
+      b
 FROM
     Bookings b
 INNER JOIN
