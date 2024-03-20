@@ -108,10 +108,23 @@ async addBooking(req, res) {
   });
 }
 
-  // delete all bookings
-  deleteAllBookings(req, res) {
+  // delete all bookings made by User
+  deleteUserBookings(req, res) {
     const qry = `
-        DELETE FROM Bookings
+      DELETE
+    b.bookID,
+   b.bookDay,
+    b.bookTime,
+    b.servName,
+    b.employeeFullname,
+    u.firstName
+FROM
+    Bookings b
+INNER JOIN
+    Users u ON b.userID = u.userID
+WHERE
+     u.userID = ${req.params.id};
+        
     `;
     db.query(qry, (err) => {
         if (err) throw err;
