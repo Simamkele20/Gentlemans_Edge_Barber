@@ -136,13 +136,7 @@ WHERE
   deleteAllBookings(req, res) {
     const qry = `
       DELETE
-        bookDay,
-        bookTime,
-        servName,
-        employeeFullname,
-        firstName,
-        bookID,
-        userID
+      *
         FROM Bookings
 
         
