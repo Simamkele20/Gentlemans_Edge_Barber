@@ -39,7 +39,7 @@ bookingRouter.post("/addBooking",bodyParser.json(), (req, res) => {
     });
   }
 });
-// delete all bookings
+// delete all bookings by user
 bookingRouter.delete("/delete/users/:id", (req, res) => {
     try {
         bookings.deleteUserBookings(req, res);
