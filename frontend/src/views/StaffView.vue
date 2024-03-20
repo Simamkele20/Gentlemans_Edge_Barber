@@ -104,7 +104,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title  fs-5" id="delete">Delete Staff</h1>
+                                <h1 class="modal-title  fs-5" id="delete">Delete Employee</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -114,7 +114,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button @click.prevent="deleteStaff(employee.staffID)" type="button"
-                                    class="btn btn-dark">Delete Staff</button>
+                                    class="btn btn-dark">Delete Employee</button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
         </div>
 
         <table class="AdiCont w-75 bg-white table mt-5 text-center mx-auto" v-else>
-            <thead  class="hea">
+            <thead class="hea">
                 <tr>
                     <th>ID</th>
                     <th>Fullname</th>
@@ -174,7 +174,9 @@ export default {
                 "staffUrl": null,
                 "staffDescription": null,
 
-            }
+            },
+
+
 
         }
     },
@@ -220,15 +222,32 @@ export default {
                 })
         },
         editStaff(staffID) {
-            const updateData = Object.assign({}, { staffID }, this.payload)
-            this.$store.dispatch('updateEmployee', updateData)
-                .then(() => {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 600);
-                })
+            const updatedValue = {};
+            if (this.payload.employeeFullname) {
+                updatedValue.employeeFullname = this.payload.employeeFullname;
+            }
+            if (this.payload.JobTittle) {
+                updatedValue.JobTittle = this.payload.JobTittle;
+            }
+            if (this.payload.staffUrl) {
+                updatedValue.staffUrl = this.payload.staffUrl;
+            }
+            if (this.payload.staffDescription) {
+                updatedValue.staffDescription = this.payload.staffDescription;
+            }
 
+            if (Object.keys(updatedValue).length > 0) {
+                const updateData = Object.assign({}, { staffID }, updatedValue);
+                this.$store.dispatch('updateEmployee', updateData)
+                    .then(() => {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 600);
+                    });
+            }
         }
+
+
     }
 
 }

@@ -91,7 +91,7 @@ export default createStore({
           AuthenticatedUser.ApplyingToken(token);
           sweet({
             title: msg,
-            text: `Welcome Back,
+            text: `Welcome Back,  
             ${result?.firstName} ${result?.lastName}`,
             icon: "success",
             timer: 2000,
@@ -360,7 +360,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when updating a employee.",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });

@@ -5,7 +5,8 @@
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
           <ul class="d-block d-md-flex  mt-2  ">
             <li class="nav-item mx-2">
-         <router-link to="/admin">   <a class="hea btn bg-dark text-white" aria-current="page" >Services</a></router-link>  
+              <router-link to="/admin"> <a class="hea btn bg-dark text-white"
+                  aria-current="page">Services</a></router-link>
             </li>
             <li class="nav-item mx-4">
               <router-link to="/users" class="hea btn bg-white text-black">Users</router-link>
@@ -115,10 +116,10 @@
     </div>
     <div class=" text-center text-white pb-5 mt-5 pt-5 mb-5" v-else-if="filterServ.length === 0">
       <h3>No Service found.</h3>
-      <h2 class="hea text-dark">Kindly add the service.</h2> 
+      <h2 class="hea text-dark">Kindly add the service.</h2>
     </div>
     <table class="AdiCont bg-white table mt-5 pb-5 w-75 text-center mx-auto" v-else>
-      <thead  class="hea">
+      <thead class="hea">
         <tr>
           <th>ID</th>
           <th> Img</th>
@@ -138,7 +139,8 @@
           <td><button class="btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#edit' + service.servID">
               Edit</button>
           </td>
-          <td><button class=" btn bg-black text-white" data-bs-toggle="modal" :data-bs-target="'#delete' + service.servID">
+          <td><button class=" btn bg-black text-white" data-bs-toggle="modal"
+              :data-bs-target="'#delete' + service.servID">
               Delete</button></td>
         </tr>
       </tbody>
@@ -167,14 +169,6 @@ export default {
         servDescription: null,
         servUrl: null,
       }
-      // EdiPayload:
-      // {
-      //   servName: null,
-      //   servAmount: null,
-      //   servDescription: null,
-      //   servUrl: null,
-      // }
-
     }
   },
   components: {
@@ -196,7 +190,7 @@ export default {
     }
 
   },
-  mounted() { 
+  mounted() {
     this.$store.dispatch('fetchServices')
 
   },
@@ -225,17 +219,34 @@ export default {
         })
     },
     editServ(servID) {
-      const updateData = Object.assign({}, { servID }, this.payload)
-      this.$store.dispatch('updateService', updateData)
-        .then(() => {
-          setTimeout(() => {
-            window.location.reload();
-          }, 600);
-        })
-    },
+      const updatedValue = {};
+      if (this.payload.servName) {
+        updatedValue.servName = this.payload.servName;
+      }
+      if (this.payload.servUrl) {
+        updatedValue.servUrl = this.payload.servUrl;
+      }
+      if (this.payload.servAmount) {
+        updatedValue.servAmount = this.payload.servAmount;
+      }
+      if (this.payload.servDescription) {
+        updatedValue.servDescription = this.payload.servDescription;
+      }
+
+      if (Object.keys(updatedValue).length > 0) {
+        const updateData = Object.assign({}, { servID }, updatedValue);
+        this.$store.dispatch('updateService', updateData)
+          .then(() => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 600);
+          });
+      }
+    }
+
   }
 }
-  
+
 </script>
 
 
