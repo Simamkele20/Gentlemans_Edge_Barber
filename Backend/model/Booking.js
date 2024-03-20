@@ -108,6 +108,22 @@ async addBooking(req, res) {
   });
 }
 
+  // delete all bookings
+  deleteAllBookings(req, res) {
+    const qry = `
+        DELETE FROM Bookings
+    `;
+    db.query(qry, (err) => {
+        if (err) throw err;
+        {
+            res.json({
+                status: res.statusCode,
+                msg: "All bookings deleted",
+            });
+        }
+    });
+}
+
 
   //   delete Booking
 
