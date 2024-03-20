@@ -132,6 +132,34 @@ WHERE
     });
 }
 
+    // delete all bookings
+  deleteAllBookings(req, res) {
+    const qry = `
+      DELETE
+      bookID,
+        bookDay,
+        bookTime,
+        servName,
+        employeeFullname,
+        firstName,
+        bookID,
+        userID
+        FROM Bookings
+
+        
+    `;
+    db.query(qry, (err) => {
+        if (err) throw err;
+        {
+            res.json({
+                status: res.statusCode,
+                msg: "All bookings deleted",
+            });
+        }
+    });
+}
+  
+
 
   //   delete Booking
 
