@@ -46,7 +46,7 @@
                                 <input v-model="payload.emailAdd" type="text" :placeholder="payload.emailAdd"
                                     class="form-control text-black">
                                 <h5 class="text-start mt-2">User Password: </h5>
-                                <input v-model="payload.userPwd" type="text" placeholder="Enter you password"
+                                <input v-model="payload.userPwd" type="text" :placeholder="payload.userPwd"
                                     class="form-control text-black">
 
                             </div>
@@ -68,7 +68,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title  fs-5 text-black" id="delete">Delete User</h1>
+                                <h1 class="modal-title  fs-5 text-black" id="delete">Delete Account</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button @click.prevent="deletingUser(user.userID)" type="button"
-                                    class="btn btn-dark">Delete User</button>
+                                    class="btn btn-dark">Delete Account</button>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export default {
             {
                 "userID": cookies?.get("VerifiedUser").result.userID,
                 emailAdd: cookies?.get("VerifiedUser").result.emailAdd,
-                userPwd: null,
+                userPwd: cookies?.get("VerifiedUser").result.userPwd,
                 "firstName": cookies?.get("VerifiedUser").result.firstName,
                 "lastName": cookies?.get("VerifiedUser").result.lastName,
                 "userAge": cookies?.get("VerifiedUser").result.userAge,
@@ -128,6 +128,7 @@ export default {
 
     },
     mounted() {
+        
 
     },
 
@@ -135,13 +136,39 @@ export default {
         Login() {
             this.$store.dispatch('Login', this.payload)
         },
-        editingUser() {
-            this.$store.dispatch('updateUser', this.payload)
-                .then(() => {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 600);
-                })
+        editingUser(userID) {
+            const updatedValue = {};
+            if (this.payload.firstName) {
+                updatedValue.firstName = this.payload.firstName;
+            }
+            if (this.payload.lastName) {
+                updatedValue.lastName = this.payload.lastName;
+            }
+            if (this.payload.userAge) {
+                updatedValue.userAge = this.payload.userAge;
+            }
+            if (this.payload.userGender) {
+                updatedValue.userGender = this.payload.userGender;
+            }
+            if (this.payload.emailAdd) {
+                updatedValue.emailAdd = this.payload.emailAdd;
+            }
+            if (this.payload.userPwd) {
+                updatedValue.userPwd = this.payload.userPwd;
+            }
+            if (this.payload.userRole) {
+                updatedValue.userRole = this.payload.userRole;
+            }
+
+            if (Object.keys(updatedValue).length > 0) {
+                const updateData = Object.assign({}, { userID }, updatedValue);
+                this.$store.dispatch('updateUser', updateData)
+                    .then(() => {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 600);
+                    });
+            }
         },
         deletingUser() {
             this.$store.dispatch('deleteUser', this.userData.userID)

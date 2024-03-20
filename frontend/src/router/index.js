@@ -86,6 +86,7 @@ const routes = [
     beforeEnter(){
       if(!cookies.get("VerifiedUser") )
       router.push({name : "login" })
+      
    
     }
   },
