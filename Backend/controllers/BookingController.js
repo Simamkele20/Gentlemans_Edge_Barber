@@ -39,6 +39,17 @@ bookingRouter.post("/addBooking",bodyParser.json(), (req, res) => {
     });
   }
 });
+// delete all bookings
+bookingRouter.delete("/deleteAll", (req, res) => {
+    try {
+        bookings.deleteAllBookings(req, res);
+    } catch (e) {
+        res.json({
+            status: res.statusCode,
+            msg: "Failed to delete all bookings",
+        });
+    }
+});
 
 //   delete booking
 bookingRouter.delete("/delete/:id",  (req, res) => {
