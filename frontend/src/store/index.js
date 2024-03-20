@@ -147,13 +147,12 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try {
-       
         let { msg } = await (
           await axios.patch(`${URL}users/update/${payload.userID}`, payload)
-          ).data;
-        let {token, result} = cookies.get("VerifiedUser")
-        result = Object.assign({}, payload) 
-        cookies.set('VerifiedUser', {token, result})
+        ).data;
+        let { token, result } = cookies.get("VerifiedUser");
+        result = Object.assign({}, payload);
+        cookies.set("VerifiedUser", { token, result });
         context.dispatch("fetchUsers");
         sweet({
           title: "Update user",
@@ -241,7 +240,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text:e.message,
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -422,9 +421,7 @@ export default createStore({
     },
     async fetchBooking(context, id) {
       try {
-        let { results } = (
-          await axios.get(`${URL}booking/users/${id}`)
-        ).data;
+        let { results } = (await axios.get(`${URL}booking/users/${id}`)).data;
         if (results) {
           context.commit("setBooking", results);
         } else {
@@ -460,6 +457,46 @@ export default createStore({
         sweet({
           title: "Error",
           text: "An error occurred when updating a booking.",
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
+    async deleteAllBookings(context) {
+      try {
+        let { msg } = await axios.delete(`${URL}booking/delete`);
+        context.dispatch("fetchBookings");
+        sweet({
+          title: "All Bookings cancelled",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: e.message,
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
+    async deleteAllBookingsByUser(context, userID) {
+      try {
+        let { msg } = await axios.delete(
+          `${URL}booking/delete/users/${userID}`
+        );
+        context.dispatch("fetchBookings");
+        sweet({
+          title: "All Bookings cancelled",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
