@@ -310,6 +310,12 @@ export default {
     },
     deleteBookings() {
       this.$store.dispatch('deleteAllBookings')
+        .then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 600);
+        })
+
     },
     addBook() {
       this.$store.dispatch('addBooking', this.payload)

@@ -7,8 +7,8 @@
     <div class="row">
 
       <div class="col">
-        <router-link to="/services" class="nav-link link-light"> <a class="btn   bg-dark text-white m-3 "
-            href="#" role="button">Go back</a></router-link>
+        <router-link to="/services" class="nav-link link-light"> <a class="btn   bg-dark text-white m-3 " href="#"
+            role="button">Go back</a></router-link>
       </div>
     </div>
     <!-- Modal-->
@@ -33,7 +33,7 @@ export default {
     service() {
       return this.$store.state.service
     },
-  
+
 
   },
   mounted() {

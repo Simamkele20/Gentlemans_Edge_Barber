@@ -4,8 +4,7 @@
         <div class="container-fluid justify-content-center">
 
             <a href="/home">
-                <img src="https://iili.io/JWELw4S.th.png" 
-                    alt="Logo" class="w-50"> </a>
+                <img src="https://iili.io/JWELw4S.th.png" alt="Logo" class="w-50"> </a>
             <button class="navbar-toggler mt-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -26,7 +25,7 @@
                     <li class="nav-item" v-show="user">
                         <router-link to="/checkout" class="nav-link">Checkout</router-link>
                     </li>
-               
+
 
                     <li class="nav-item" v-show="isAdmin">
                         <router-link to="/admin" class="nav-link">Admin </router-link>
@@ -38,7 +37,7 @@
                         <router-link to="/profile" class="nav-link">
                             <h4><i class="bi bi-person-circle"></i> </h4>
                         </router-link>
-                    </li>   
+                    </li>
                 </ul>
             </div>
         </div>

@@ -72,5 +72,4 @@ export default {
 ::-webkit-scrollbar {
   display: none;
 }
-
 </style>

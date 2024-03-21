@@ -488,7 +488,7 @@ export default createStore({
         );
         context.dispatch("fetchBookings");
         sweet({
-          title: "All Bookings cancelled",
+          title: "All Your Bookings cancelled",
           text: msg,
           icon: "success",
           timer: 2000,

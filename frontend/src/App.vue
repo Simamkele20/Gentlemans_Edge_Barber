@@ -1,12 +1,12 @@
-<template >
+<template>
   <navbar />
   <main>
     <router-view />
   </main>
 
-  <Footer/>
+  <Footer />
 </template>
- 
+
 <script>
 import Footer from "./components/Footer.vue"
 import navbar from './components/navbar.vue';

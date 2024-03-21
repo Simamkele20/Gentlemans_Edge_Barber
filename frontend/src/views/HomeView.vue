@@ -304,15 +304,17 @@ export default {
 
 <style scoped>
 @media screen and (max-width: 489px) {
-.hea{
-  padding-top: 193px;
+  .hea {
+    padding-top: 193px;
 
-}
-.head{
-  padding-bottom: 193px;
-}
-.main {
- display: none;
+  }
+
+  .head {
+    padding-bottom: 193px;
+  }
+
+  .main {
+    display: none;
   }
 
 }
