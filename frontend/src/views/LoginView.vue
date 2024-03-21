@@ -57,6 +57,15 @@ export default {
 </script>
 
 <style scoped>
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

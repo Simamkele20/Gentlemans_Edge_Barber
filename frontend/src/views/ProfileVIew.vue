@@ -189,6 +189,18 @@ export default {
 </script>
 
 <style style="../assets/css/style.css">
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 

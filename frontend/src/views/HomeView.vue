@@ -303,6 +303,18 @@ export default {
 
 
 <style scoped>
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 @media screen and (max-width: 489px) {
   .hea {
     padding-top: 193px;
