@@ -57,22 +57,21 @@ const routes = [
     path: "/register",
     name: "register",
     component: () => import("../views/RegisterView.vue"),
-    
   },
   {
     path: "/logout",
     name: "logout",
     component: () => import("../views/LoginView.vue"),
     beforeEnter() {
-      cookies.remove("VerifiedUser")
-      router.push({ name: "login" })
-      location.reload()
-    }
+      cookies.remove("VerifiedUser");
+      router.push({ name: "login" });
+      location.reload();
+    },
   },
   {
     path: "/admin",
     name: "admin",
-    component: () => import("../views/AdminView.vue")
+    component: () => import("../views/AdminView.vue"),
   },
   {
     path: "/contact",
@@ -83,12 +82,9 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: () => import("../views/ProfileVIew.vue"),
-    beforeEnter(){
-      if(!cookies.get("VerifiedUser") )
-      router.push({name : "login" })
-      
-   
-    }
+    beforeEnter() {
+      if (!cookies.get("VerifiedUser")) router.push({ name: "login" });
+    },
   },
   {
     path: "/users",

@@ -8,8 +8,8 @@
             <h2 class="w-50 mx-auto mt-3 text-white">{{ emp.staffDescription }}</h2>
             <div class="row">
                 <div class="col">
-                    <router-link to="/about" > <a class="btn btn-dak m-4  bg-dark text-white  "
-                            href="#" role="button">Go back</a></router-link>
+                    <router-link to="/about"> <a class="btn btn-dak m-4  bg-dark text-white  " href="#" role="button">Go
+                            back</a></router-link>
                 </div>
             </div>
         </div>

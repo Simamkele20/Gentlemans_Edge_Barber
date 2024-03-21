@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.row{
+.row {
 
     padding-bottom: -20px;
 }

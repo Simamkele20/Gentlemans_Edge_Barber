@@ -21,7 +21,7 @@
 
 /* Services Content */
 .service {
-  height: 160vh;
+  height: 390vh;
 }
 .hea {
   font-family: "Black Ops One", system-ui;
@@ -426,13 +426,11 @@ hr {
   }
   .contact-text {
     margin-left: -10px;
-    
   }
-  .ema{
+  .ema {
     margin-left: -100px;
-    text-wrap:balance;
+    text-wrap: balance;
   }
-  
 }
 
 @media screen and (max-width: 1000px) {
@@ -446,7 +444,7 @@ hr {
   }
 
   .page {
-    height: 300vh;
+    height: 400vh;
   }
 
   .service {
@@ -456,5 +454,4 @@ hr {
     animation: none;
     opacity: 1;
   }
-
 }

@@ -66,7 +66,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <router-link to="/booking"> <button @click="addBook()" type="button" class="btn btn-dark">
+              <router-link to="/checkout"> <button @click="addBook()" type="button" class="btn btn-dark">
                   Add Booking
                 </button></router-link>
             </div>
