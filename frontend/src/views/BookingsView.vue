@@ -23,7 +23,7 @@
 
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
         <div class=" servBtn row text-end">
-          <div class="col-7">
+          <div class="search col-7">
             <input v-model="searchInput" type="text" placeholder="Search Booking by Customer Name" @input="Search"
               class="form-control w-50">
           </div>

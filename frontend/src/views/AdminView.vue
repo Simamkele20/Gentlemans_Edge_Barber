@@ -24,12 +24,13 @@
 
 
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
-        <div class="col">
+        
+        <div class="search col">
           <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
             class="form-control w-50">
         </div>
 
-        <div class="col-2 ">
+        <div class="add col-2 ">
           <button class="hea btn bg-white  text-black" data-bs-toggle="modal" data-bs-target="#AddServ"> Add a
             Service</button>
         </div>
