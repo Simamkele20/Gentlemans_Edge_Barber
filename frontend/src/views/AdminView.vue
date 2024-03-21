@@ -29,7 +29,7 @@
             class="form-control w-50">
         </div>
 
-        <div class="col-2  mx-3">
+        <div class="col-2 ">
           <button class="hea btn bg-white  text-black" data-bs-toggle="modal" data-bs-target="#AddServ"> Add a
             Service</button>
         </div>

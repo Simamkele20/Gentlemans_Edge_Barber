@@ -57,6 +57,27 @@ export default {
 </script>
 
 <style scoped>
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.about{
+  height:170vh;
+}
+.spinner {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+}
 @media screen and (max-width: 767px) {
   .card-img-top {
     width: 100%;
@@ -67,9 +88,9 @@ export default {
   .para {
     font-size: 16px;
   }
+  .about{
+  height:370vh;
+}
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
 </style>
