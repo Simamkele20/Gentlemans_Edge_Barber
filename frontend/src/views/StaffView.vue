@@ -23,7 +23,7 @@
             </div>
 
             <div class=" prodBtn d-block d-md-flex row text-end mt-4">
-                <div class="col">
+                <div class="search col">
                     <input v-model="searchInput" type="text" placeholder="Search employee by name" @input="Search"
                         class="form-control w-50">
                 </div>

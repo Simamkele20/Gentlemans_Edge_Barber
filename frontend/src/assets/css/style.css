@@ -454,4 +454,14 @@ hr {
     animation: none;
     opacity: 1;
   }
+  .nav-item{
+    margin-top:20px
+  }
+  .search{
+   display: none;
+  }
+  .add{
+    margin-left:80px;
+
+  }
 }
