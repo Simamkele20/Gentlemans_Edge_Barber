@@ -3,7 +3,7 @@
     <div class="container">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
-          <ul class="d-block d-md-flex  mt-2  ">
+          <ul class="d-block d-none d-md-inline d-md-flex  mt-2 ">
             <li class="nav-item mx-2">
               <router-link to="/admin"> <a class="hea btn bg-dark text-white"
                   aria-current="page">Services</a></router-link>
@@ -20,6 +20,14 @@
           </ul>
         </nav>
       </div>
+      <div class="text-center d-md-none">
+        <select v-model="selectedPage" class="btn form-class bg-dark text-white ">
+          <option value="admin">Services</option>
+          <option value="users">User</option>
+          <option value="staff">Staff</option>
+          <option value="bookings">Bookings</option>
+        </select>
+      </div>
 
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
         <div class=" servBtn row text-end">
@@ -27,12 +35,12 @@
             <input v-model="searchInput" type="text" placeholder="Search Booking by Customer Name" @input="Search"
               class="form-control w-50">
           </div>
-          <div class="col mx-3">
-            <button class="hea btn bg-dark text-white" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+          <div class="boo col ">
+            <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
               Booking</button>
           </div>
-          <div class="col">
-            <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#deleteAll"> Cancel All
+          <div class="col d-none d-md-inline">
+            <button class="hea btn  bg-dark text-white " data-bs-toggle="modal" data-bs-target="#deleteAll"> Cancel All
               Booking</button>
           </div>
         </div>
@@ -73,13 +81,13 @@
                 <select v-model="payload.servName" type="text" class="form-control ">
                   <option value=""></option>
                   <option :value="service.servName" v-for="service in services" :key="service.servID"> {{
-              service.servName }}</option>
+          service.servName }}</option>
                 </select>
                 <h5 class="text-start mt-2">Employee FullName: </h5>
                 <select v-model="payload.employeeFullname" type="text" class="form-control ">
                   <option value=""></option>
                   <option :value="employee.employeeFullname" v-for="employee in staff" :key="employee.staffID"> {{
-              employee.employeeFullname }}
+          employee.employeeFullname }}
                   </option>
                 </select>
               </div>
@@ -137,13 +145,13 @@
             <select v-model="payload.servName" type="text" class="form-control ">
               <option value=""></option>
               <option :value="service.servName" v-for="service in services" :key="service.servID"> {{
-              service.servName }}</option>
+          service.servName }}</option>
             </select>
             <h5 class="text-start mt-2">Employee FullName: </h5>
             <select v-model="payload.employeeFullname" type="text" class="form-control ">
               <option value=""></option>
               <option :value="employee.employeeFullname" v-for="employee in staff" :key="employee.staffID"> {{
-              employee.employeeFullname }}
+          employee.employeeFullname }}
               </option>
             </select>
           </div>
@@ -247,6 +255,7 @@ export default {
 
   data() {
     return {
+      selectedPage: 'bookings',
       searchInput: null,
       payload:
       {
@@ -359,8 +368,11 @@ export default {
       }
     }
 
-
-
+  },
+  watch: {
+    selectedPage(newPage) {
+      this.$router.push({ name: newPage });
+    }
   }
 
 }
