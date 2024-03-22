@@ -19,6 +19,19 @@
   height: 220vh;
 }
 
+.sen{
+width: 20px;
+}
+.clr{
+  padding-top: -10px;
+  margin-top: -30px;
+}
+.son{
+  margin-left: 110px;
+}
+.send-text{
+  margin-left: 97px;
+}
 /* Services Content */
 .service {
   height: 390vh;
@@ -474,5 +487,18 @@ hr {
   .boo{
     margin-left: -150px;
     
+  }
+  .sen{
+    width:50px;
+  }
+  .clr{
+    margin-top: -30px;
+    width: 200px;
+  }
+  .son{
+    margin-left: 8px;
+  }
+  .send-text{
+    margin-left: 0px;
   }
 }
