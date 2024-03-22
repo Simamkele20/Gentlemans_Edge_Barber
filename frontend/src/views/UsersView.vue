@@ -259,7 +259,7 @@ export default {
           }, 700);
         })
     },
-    editUser(userID) {
+    editUser(userID) {          
       const updatedValue = {};
       if (this.payload.firstName) {
         updatedValue.firstName = this.payload.firstName;

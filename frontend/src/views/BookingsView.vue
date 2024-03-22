@@ -20,7 +20,7 @@
           </ul>
         </nav>
       </div>
-      <div class="text-center d-md-none">
+      <div class="text-center  d-md-none">
         <select v-model="selectedPage" class="btn form-class bg-dark text-white ">
           <option value="admin">Services</option>
           <option value="users">User</option>
@@ -36,7 +36,7 @@
               class="form-control w-50">
           </div>
           <div class="boo col ">
-            <button class="hea btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+            <button class="hea  btn bg-white text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
               Booking</button>
           </div>
           <div class="col d-none d-md-inline">

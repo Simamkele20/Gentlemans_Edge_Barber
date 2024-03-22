@@ -476,16 +476,16 @@ hr {
    display: none;
   }
   .add{
- margin-left: -50px;
+ margin-left: -40px;
     width: 300px;
 
   }
   .use{
-    width: 208px;
+    width: 198px;
    
   }
   .boo{
-    margin-left: -150px;
+    margin-left: -133px;
     
   }
   .sen{
@@ -502,3 +502,5 @@ hr {
     margin-left: 0px;
   }
 }
+
+
