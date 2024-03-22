@@ -20,13 +20,14 @@
 
         <textarea class="form-control mt-1" rows="10" placeholder="MESSAGE" name="message" required></textarea>
 
-        <div class="btn-group d-block d-md-flex" role="group">
-          <button class="btn btn-dark mb-5 mt-4  px-5 " type="reset">Clear</button>
-          <button class="btn btn-dark send-button mb-5 mt-4  w-50 mx-5" id="submit" type="submit" value="SEND">
+        <div class="btn-group d-block " role="group">
+          <button class="sen btn btn-dark send-button  mb-5 mt-4  " id="submit" type="submit" value="SEND">
             <div class="alt-send-button w-25 mx-5 px-4" >
-              <i class="bi bi-send "></i><span class="send-text">SEND</span>
+              <i class="son bi bi-send "></i><span class="send-text">SEND</span>
             </div>
           </button>
+          <button class="clr btn btn-dark mb-5 w-100  px-5 " type="reset">Clear</button>
+        
         </div>
 
       </form>
