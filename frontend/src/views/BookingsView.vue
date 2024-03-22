@@ -218,7 +218,7 @@
       <h2 class="hea text-dark">kindly add the booking.</h2>
     </div>
     <table class="AdiCont table mt-5 bg-white text-center mx-auto w-75" v-else>
-      <thead class="hea">
+      <thead class="hea  d-none d-md-inline">
         <tr>
           <th> Book ID</th>
           <th> Book Day</th>

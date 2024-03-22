@@ -461,6 +461,9 @@ hr {
   .page {
     height: 400vh;
   }
+  .pages{
+    height: 450vh;
+  }
 
   .service {
     height: 650vh;
@@ -487,6 +490,9 @@ hr {
   .boo{
     margin-left: -133px;
     
+  }
+  .addE{
+  margin-right:65px
   }
   .sen{
     width:50px;

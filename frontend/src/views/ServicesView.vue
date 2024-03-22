@@ -3,11 +3,11 @@
     <h2 class="hea text-white text-center mb-4">Our Services</h2>
     <div class="bg-black text-center"></div>
     <div class="servBtn d-grid d-md-flex row text-end">
-      <div class="col">
+      <div class="col  d-none d-md-inline">
         <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
           class="form-control w-50" />
       </div>
-      <div class="col">
+      <div class="col  d-none d-md-inline">
         <button @click="sortItems" class="btn bg-white">Sort by Price</button>
       </div>
       <div class="col-2">

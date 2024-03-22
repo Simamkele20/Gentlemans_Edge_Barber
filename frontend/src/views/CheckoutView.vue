@@ -4,14 +4,14 @@
       <h2 class="hea text-center text-white pt-3">Your Bookings</h2>
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
         <div class=" servBtn row text-end">
-          <div class="col-7">
+          <div class="col-7  d-none d-md-inline">
             <input v-model="searchInput" type="text" placeholder="Search Booking by Day" @input="Search"
               class="form-control w-50">
           </div>
           <div class="col">
-            <button class="hea btn bg-white" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
+            <button class="addE hea btn bg-white" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Booking</button>
           </div>
-          <div class="col">
+          <div class="col  d-none d-md-inline">
             <button class="hea btn bg-white" data-bs-toggle="modal" data-bs-target="#deleteAll"> Cancel all
               Bookings</button>
           </div>
@@ -119,7 +119,7 @@
       <h2 class="hea text-dark">We kindly request that you book your appointment.</h2>
     </div>
     <table class="AdiCont  container bg-white pb-5 table mt-5 mb-5 pt-5 text-center mx-auto" v-else>
-      <thead class="hea">
+      <thead class="hea  d-none d-md-inline">
         <tr>
           <th> Book ID</th>
           <th> Book Day</th>

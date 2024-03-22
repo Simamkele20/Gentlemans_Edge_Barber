@@ -138,7 +138,7 @@
         </div>
 
         <table class="AdiCont w-75 bg-white table mt-5 text-center mx-auto" v-else>
-            <thead class="hea">
+            <thead class="hea  d-none d-md-inline">
                 <tr>
                     <th>ID</th>
                     <th>Fullname</th>

@@ -129,7 +129,7 @@
       <h2 class="hea text-dark">Kindly add the service.</h2>
     </div>
     <table class="AdiCont bg-white table mt-5 pb-5 w-75 text-center mx-auto" v-else>
-      <thead class="hea">
+      <thead class="hea d-none d-md-inline">
         <tr>
           <th>ID</th>
           <th> Img</th>
