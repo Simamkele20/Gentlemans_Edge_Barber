@@ -3,7 +3,7 @@
     <div class="container ">
       <div class="pt-4">
         <nav class="navbar nav-pills nav-underline  w-100 w-md-25 justify-content-center mx-auto" role="tablist">
-          <ul class="d-block d-md-flex  mt-2  ">
+          <ul class="d-block d-none d-md-inline d-md-flex  mt-2 ">
             <li class="nav-item mx-2">
               <router-link to="/admin"> <a class="hea btn bg-dark text-white"
                   aria-current="page">Services</a></router-link>
@@ -20,17 +20,26 @@
           </ul>
         </nav>
       </div>
+      <div class="text-center d-md-none">
+        <select v-model="selectedPage" class="btn form-class bg-dark text-white ">
+          <option value="admin">Services</option>
+          <option value="users">User</option>
+          <option value="staff">Staff</option>
+          <option value="bookings">Bookings</option>
+        </select>
+      </div>
+
 
 
 
       <div class=" prodBtn d-block d-md-flex row text-end mt-4">
-        
+
         <div class="search col">
           <input v-model="searchInput" type="text" placeholder="Search Service by name" @input="Search"
             class="form-control w-50">
         </div>
 
-        <div class="add col-2 ">
+        <div class="add px-4 col-2 ">
           <button class="hea btn bg-white  text-black" data-bs-toggle="modal" data-bs-target="#AddServ"> Add a
             Service</button>
         </div>
@@ -162,6 +171,7 @@ export default {
   name: "AdminView",
   data() {
     return {
+      selectedPage: 'admin',
       searchInput: '',
       payload:
       {
@@ -245,6 +255,11 @@ export default {
       }
     }
 
+  },
+  watch: {
+    selectedPage(newPage) {
+      this.$router.push({ name: newPage });
+    }
   }
 }
 
