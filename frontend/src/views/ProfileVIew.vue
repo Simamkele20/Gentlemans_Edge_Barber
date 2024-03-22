@@ -46,7 +46,7 @@
                                 <input v-model="payload.emailAdd" type="text" :placeholder="payload.emailAdd"
                                     class="form-control text-black">
                                 <h5 class="text-start mt-2">User Password: </h5>
-                                <input v-model="payload.userPwd" type="text" :placeholder="payload.userPwd"
+                                <input v-model="payload.userPwd" type="password" :placeholder="payload.userPwd"
                                     class="form-control text-black">
 
                             </div>
@@ -137,6 +137,9 @@ export default {
             this.$store.dispatch('Login', this.payload)
         },
         editingUser(userID) {
+            let { token, result } = cookies.get("VerifiedUser");
+        result = Object.assign({}, this.payload);
+        cookies.set("VerifiedUser", { token, result });
             const updatedValue = {};
             if (this.payload.firstName) {
                 updatedValue.firstName = this.payload.firstName;

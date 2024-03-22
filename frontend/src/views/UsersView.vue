@@ -113,7 +113,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button @click="editUser(user.userID)" type="button" class="btn btn-dark">Update User</button>
+                <button @click.prevent="editUser(user.userID)" type="button" class="btn btn-dark">Update User</button>
               </div>
             </div>
           </div>
@@ -273,7 +273,6 @@ export default {
       if (this.payload.userRole) {
         updatedValue.userRole = this.payload.userRole;
       }
-
       if (Object.keys(updatedValue).length > 0) {
         const updateData = Object.assign({}, { userID }, updatedValue);
         this.$store.dispatch('updateUser', updateData)

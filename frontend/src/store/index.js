@@ -150,9 +150,7 @@ export default createStore({
         let { msg } = await (
           await axios.patch(`${URL}users/update/${payload.userID}`, payload)
         ).data;
-        let { token, result } = cookies.get("VerifiedUser");
-        result = Object.assign({}, payload);
-        cookies.set("VerifiedUser", { token, result });
+
         context.dispatch("fetchUsers");
         sweet({
           title: "Update user",
